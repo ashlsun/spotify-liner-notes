@@ -18,7 +18,7 @@ export default function PlaylistPage(prop: {playlistID:string}
     )  {
         const playlistID = prop.playlistID
 
-        const [playlistObject, setPlaylistObject] = useState(null);
+        const [playlistObject, setPlaylistObject] = useState<any>(null);
         const [search, setSearch] = useState("");
         const [isError, setIsError] = useState(false)
 
