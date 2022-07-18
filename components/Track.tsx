@@ -3,6 +3,7 @@ import { useState } from "react";
 export default function Track(props: {
     index: number,
     title: string,
+    link: string,
     artist: string,
     album: string,
     length: string 
@@ -27,7 +28,9 @@ export default function Track(props: {
                 <div className="index">{props.index}</div> 
 
                 <div className="song">
-                    <div className="song-title">{props.title}</div> 
+                    <div className="song-title"> 
+                        <a href={props.link} target="_blank" style={{color: "inherit", textDecoration: "inherit"}}> {props.title} </a>
+                    </div> 
                     <div className="artist">{props.artist}</div> 
                 </div>
 

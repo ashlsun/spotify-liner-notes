@@ -46,6 +46,7 @@ export default function PlaylistPage(prop: {playlistID:string}
                     <div className="center"> 
                         <p>Error: Playlist not found.</p>
                         <p> Did you enter the right link? Is the playlist public?  </p>
+                        <br></br>
                         <a href="/">return home</a>
                     </div>
                 </>  
@@ -55,7 +56,7 @@ export default function PlaylistPage(prop: {playlistID:string}
                     <div id="page-header">
                         <img id="playlist-cover" src={playlistObject['images'][0]['url']}/>
                         <div id="playlist-info">
-                            <p>PUBLIC PLAYLIST</p>
+                            <p>{playlistObject['collaborative'] ? "COLLABORATIVE" : "PUBLIC"} PLAYLIST</p>
                             <h1>{playlistObject['name']}</h1>
                             <p className="desc">{playlistObject['description']}</p>
                             <p>{playlistObject['owner']['display_name']} • {playlistObject['tracks']['total']} songs, 
@@ -83,6 +84,7 @@ export default function PlaylistPage(prop: {playlistID:string}
                                 key={item['track']['name']}
                                 index={i + 1}
                                 title={item['track']['name']} 
+                                link={item['track']['external_urls']['spotify']}
                                 artist={item['track']['artists'][0]['name']} 
                                 album={item['track']['album']['name']} 
                                 length={durationFormatter(item['track']['duration_ms'])} 
