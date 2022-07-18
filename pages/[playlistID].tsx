@@ -82,12 +82,12 @@ export default function PlaylistPage(prop: {playlistID:string}
                         <hr style={{color:"grey"}}/>
         
                         {playlistObject['tracks']['items'].filter(
-                            (d: any) => d['track']['name'].toLowerCase().includes(search.toLowerCase()) || 
+                            (d) => d['track']['name'].toLowerCase().includes(search.toLowerCase()) || 
                             d['track']['artists'][0]['name'].toLowerCase().includes(search.toLowerCase()) || 
                             d['track']['album']['name'].toLowerCase().includes(search.toLowerCase())).map(
                                 (item : any, i : number) => (
                             <Track 
-                                key={item['track']['name']}
+                                key={item['added_at'] + item['track']['id']}
                                 index={i + 1}
                                 title={item['track']['name']} 
                                 link={item['track']['external_urls']['spotify']}
