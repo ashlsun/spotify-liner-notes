@@ -57,7 +57,13 @@ export default function PlaylistPage(prop: {playlistID:string}
                         <img id="playlist-cover" src={playlistObject['images'][0]['url']}/>
                         <div id="playlist-info">
                             <p>{playlistObject['collaborative'] ? "COLLABORATIVE" : "PUBLIC"} PLAYLIST</p>
-                            <h1>{playlistObject['name']}</h1>
+                            <h1>
+                                <a href={playlistObject['external_urls']['spotify']}
+                                target="_blank"
+                                style={{color: 'inherit', textDecoration: 'inherit'}}>
+                                    {playlistObject['name']}
+                                </a>
+                            </h1>
                             <p className="desc">{playlistObject['description']}</p>
                             <p>{playlistObject['owner']['display_name']} • {playlistObject['tracks']['total']} songs, 
                             <span className="desc"> {durationFormatter(durationSum(playlistObject))} </span></p>
