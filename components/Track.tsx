@@ -2,6 +2,7 @@ import { useState } from "react";
 
 export default function Track(props: {
     index: number,
+    addedAt: string,
     title: string,
     link: string,
     artist: string,
@@ -36,6 +37,10 @@ export default function Track(props: {
 
                 <div className="album">
                     {props.album}
+                </div>
+
+                <div className="addedAt">
+                    {props.addedAt.split("T")[0]}
                 </div>
 
                 <div className="length">

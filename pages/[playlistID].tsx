@@ -76,6 +76,7 @@ export default function PlaylistPage(prop: {playlistID:string}
                             <div className="index"> # </div>
                             <div className="song">TITLE</div> 
                             <div className="album">ALBUM</div>
+                            <div className="addedAt">DATE ADDED</div>
                             <div className="length">LENGTH</div>
                         </div>
         
@@ -88,6 +89,7 @@ export default function PlaylistPage(prop: {playlistID:string}
                                 (item : any, i : number) => (
                             <Track 
                                 key={item['added_at'] + item['track']['id']}
+                                addedAt={item['added_at']} 
                                 index={i + 1}
                                 title={item['track']['name']} 
                                 link={item['track']['external_urls']['spotify']}

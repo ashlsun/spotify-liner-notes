@@ -7,7 +7,7 @@ body {
     --open-note-border: 0.5px black dashed;
     margin:0px;
     color: black;
-    font-family: Courier;
+    font-family: Courier, monospace;
     /* background-image: linear-gradient(
         115deg,
         hsl(240deg 6% 93%) 0%,
@@ -83,6 +83,12 @@ h1 {
     color: grey;
 
 }
+
+.addedAt{
+    width: 170px;
+    color: grey;
+}
+
 .length{
     width: 100px;
     color: grey;
