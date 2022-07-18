@@ -52,8 +52,8 @@ export default function Index() {
             <title>Liner Notes </title>
         </Head>
 
-            <input type="text" value={newPostBody} onChange={e => setNewPostBody(e.target.value)} />
-            <button onClick={onAdd}>Add</button>
+            {/* <input type="text" value={newPostBody} onChange={e => setNewPostBody(e.target.value)} />
+            <button onClick={onAdd}>Add</button> */}
 
                 <div className="center">
                     <p > Please enter the URL/URI to your Spotify playlist! </p>
