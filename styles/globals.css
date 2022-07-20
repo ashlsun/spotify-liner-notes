@@ -64,6 +64,7 @@ h1 {
 .desc{
     opacity:60%;
 }
+
 .track{
     padding-top: 10px;
     padding-bottom: 10px;
@@ -170,7 +171,8 @@ button:active{
 input:focus {
     outline: none;
 }
-.comment-box{
+
+.track-note{
     overflow: hidden;
     transition: max-height 0.5s ease;
     color: black;
@@ -178,11 +180,11 @@ input:focus {
     border-top: 0px transparent;
     border-collapse: true;
     background-color: var(--track-bg);
-    margin-right: 0;
-    margin-left: auto;
-    margin-bottom: 4px;
     padding-left: 50px;
     padding-right: 50px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    margin-bottom: 5px;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
     /* box-shadow:10px 10px 20px white;
@@ -194,4 +196,13 @@ input:focus {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%)
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit
+}
+
+a:hover{
+    text-decoration: underline;
 }

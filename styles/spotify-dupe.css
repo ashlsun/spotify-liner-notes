@@ -155,11 +155,19 @@ button:active{
     width: 200px;
 }
 
+a {
+    color: inherit;
+    text-decoration: inherit
+}
+
+a:hover{
+    text-decoration: underline;
+}
 
 input:focus {
     outline: none;
 }
-.comment-box{
+.track-note{
     overflow: hidden;
     transition: max-height 0.5s ease;
     color: rgb(170, 170, 170);

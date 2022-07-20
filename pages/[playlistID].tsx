@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import {durationFormatter, durationSum} from  "../utils/utils";
 import Track from "../components/Track";
 import Head from "next/head";
+import Accordion from "../components/Accordion";
 
 export async function getServerSideProps(context: any){
     const playlistID = context.params.playlistID;
@@ -58,9 +59,7 @@ export default function PlaylistPage(prop: {playlistID:string}
                         <div id="playlist-info">
                             <p>{playlistObject['collaborative'] ? "COLLABORATIVE" : "PUBLIC"} PLAYLIST</p>
                             <h1>
-                                <a href={playlistObject['external_urls']['spotify']}
-                                target="_blank"
-                                style={{color: 'inherit', textDecoration: 'inherit'}}>
+                                <a href={playlistObject['external_urls']['spotify']} target="_blank">
                                     {playlistObject['name']}
                                 </a>
                             </h1>
