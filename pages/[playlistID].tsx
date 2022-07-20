@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import {durationFormatter, durationSum} from  "../utils/utils";
 import Track from "../components/Track";
 import Head from "next/head";
-import Accordion from "../components/Accordion";
 
 export async function getServerSideProps(context: any){
     const playlistID = context.params.playlistID;
