@@ -33,6 +33,7 @@ h1 {
 
 #page-header{
     padding: 50px;
+    padding-top: 100px;
     padding-bottom: 0px;
     display: flex;
     z-index: 1;
@@ -166,12 +167,14 @@ button:active{
 }
 
 button:disabled{
-    opacity: 40%;
+    opacity: 35%;
+    color: black;
 }
 
 button:disabled:hover{
-    opacity: 40%;
+    opacity: 35%;
     background-color: transparent;
+    color: black;
 }
 
 
@@ -198,7 +201,7 @@ input:focus {
     padding-right: 50px;
     padding-bottom: 20px;
     padding-top: 20px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
     /* box-shadow:10px 10px 20px white;
@@ -233,4 +236,25 @@ textarea{
 
 textarea:focus{
     outline: black;
+}
+
+.navbar {
+    padding: 10px;
+    width: 100%;
+    display: inline-flex;
+    position: fixed;
+    background-color: rgba(255,255,255,.9);
+    border-bottom: black 1px dashed;
+    z-index: 1;
+}
+
+.navlink-section{
+    display: inline-flex;
+    margin-right: 10px;
+    margin-left: auto;
+    align-items: flex-end;
+}
+.navlink {
+    padding-left: 10px;
+    padding-right: 10px;
 }

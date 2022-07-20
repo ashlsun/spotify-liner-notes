@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { useEffect } from "react";
 import Head from "next/head";
 import axios from "axios";
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import NavBar from "../components/NavBar";
 
 export default function Index() {
     const [playlistId, setPlaylistId] = useState("")
@@ -17,7 +16,7 @@ export default function Index() {
         } else if (isValidUri(input)) {
             id = getIdFromUri(input)
         }
-        window.location.href= "/"+id
+        window.location.href= "/create/"+id
 
     }
 
@@ -52,6 +51,7 @@ export default function Index() {
             <title>Liner Notes </title>
         </Head>
 
+        <NavBar></NavBar>
             {/* <input type="text" value={newPostBody} onChange={e => setNewPostBody(e.target.value)} />
             <button onClick={onAdd}>Add</button> */}
 

@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import {durationFormatter, durationSum} from  "../utils/utils";
-import Track from "../components/Track";
+import {durationFormatter, durationSum} from  "../../utils/utils";
+import Track from "../../components/Track";
+import NavBar from "../../components/NavBar";
 import Head from "next/head";
 
 export async function getServerSideProps(context: any){
@@ -40,7 +41,7 @@ export default function PlaylistPage(prop: {playlistID:string}
             <Head>
                 <title>Liner Notes{playlistObject ? ": " + playlistObject['name'] : ""} </title>
             </Head>
-
+            <NavBar></NavBar>
             {isError ? 
                 <>
                     <div className="center"> 

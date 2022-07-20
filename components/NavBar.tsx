@@ -1,16 +1,23 @@
 import { useState } from "react";
 
-export default function Track(props: {} ) {
-    return (<>
-    <p>Liner Notes</p>
-    <div>
-        <div>
-            Home
+export default function NavBar(props: {} ) {
+    return (
+    <>
+    <div className="navbar">
+        <strong>Liner Notes</strong>
+    
+    <div className="navlink-section">
+        <div className="navlink">
+            <a href="/">Home</a> 
         </div>
 
-        <div>
-            About
+        <div className="navlink">
+            <a href="/about">About</a>
         </div>
+
+    </div>
+
+
     </div>
     </>)
 }
