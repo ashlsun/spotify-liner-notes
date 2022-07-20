@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Accordion from "./Accordion";
+import Accordion from "react-robust-accordion";
 
 export default function Track(props: {
     index: number,
