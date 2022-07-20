@@ -165,6 +165,16 @@ button:active{
     transition: color 0.3;
 }
 
+button:disabled{
+    opacity: 40%;
+}
+
+button:disabled:hover{
+    opacity: 40%;
+    background-color: transparent;
+}
+
+
 .playlist-search-bar{
     position: relative;
     margin-top: auto;

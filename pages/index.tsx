@@ -63,7 +63,7 @@ export default function Index() {
                             value={playlistId} 
                             onChange={e => setPlaylistId(e.target.value)}
                         />
-                        <button onClick={() => navigate(playlistId)} >Enter!</button> 
+                        <button className="enter-button" onClick={() => navigate(playlistId)} >Enter!</button> 
                         {/* want to navigate to corresponding  */}
                     </div>
                 </div>

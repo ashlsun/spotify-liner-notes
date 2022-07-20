@@ -17,6 +17,7 @@ export default function Track(props: {
     const [editing, setEditing] = useState(false);
     const [note, setNote] = useState("this is a placeholder note for the song " + props.title + " by " + props.artist)
     const [draft, setDraft] = useState(note)
+    const [hovering, setHovering] = useState(false)
     
     const handleDraftChange = (event: { target: { value: SetStateAction<string>; style: { height: string; }; scrollHeight: number; }; }) => {
         // 👇️ access textarea value
@@ -27,7 +28,7 @@ export default function Track(props: {
     
     const saveDraft = () =>{
         setNote(draft)
-        setEditing(false)
+        // setEditing(false)
     }
 
     const getNoteHeight = () => {
@@ -70,15 +71,9 @@ export default function Track(props: {
         <div className="track-note">
             {!editing ?  
                 <>
-                
-
                     {note}
                     {props.editable ?
-                        <> 
-                            <p style={{color: "blue"}}> <button onClick={() => setEditing(true)}>edit</button> </p>
-                        </> 
-                    : 
-                        <></>
+                        <><p><button onClick={() => setEditing(true)}>edit</button></p></> : <></>
                     }
                 
                 </>
@@ -90,8 +85,20 @@ export default function Track(props: {
                         onFocus={handleDraftChange}
                         onChange={handleDraftChange}>{note}</textarea>
                     <p> 
-                        <button onClick={() => saveDraft()}>save</button>
-                        <button onClick={() => setEditing(false)}>cancel</button>
+                        <button onClick={() => saveDraft()}
+                                disabled={(draft == note) ? true : false}>save</button>
+                        <button onClick={() => setEditing(false)}
+                                onMouseEnter={() => setHovering(true)}
+                                onMouseLeave={() => setHovering(false)}>exit</button>
+    
+                         <span style={{
+                                opacity: (hovering && draft != note ? "100%" : "0%"),
+                                color: "red", 
+                                fontSize: "small", 
+                                transition:"all 0.1s ease"
+                            }}> 
+                            are you sure? your changes will be discarded!</span> 
+                        
                     </p>
                 </> 
             }
