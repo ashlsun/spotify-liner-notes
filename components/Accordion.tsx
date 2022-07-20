@@ -24,7 +24,7 @@ const Accordion = (props:{
     const [isOpen, setIsOpen] = useState(props.setOpenState ? props.openState : !!props.open);
     const [height, setHeight] = useState(0);
     const [transition, setTransition] = useState("");
-    const contentRef = useRef(null);
+    const contentRef: any = useRef(null);
     const [resizeListener, sizes] = useResizeAware();
 
     useEffect(() => {
@@ -32,12 +32,12 @@ const Accordion = (props:{
     }, [props.openState]);
 
     useEffect(() => {
-        setHeight(isOpen ? contentRef.current.scrollHeight + 1 : 0);
+        setHeight(isOpen ? (!contentRef ? 0 : (!contentRef.current ? 0 : contentRef.current.scrollHeight + 1 )): 0);
     }, [sizes]);
 
     function toggleOpen(e = null) {
         setTransition("all 0.3s ease");
-        setHeight(!isOpen ? contentRef.current.scrollHeight + 1 : 0);
+        setHeight(isOpen ? (!contentRef ? 0 : (!contentRef.current ? 0 : contentRef.current.scrollHeight + 1 )): 0);
 
         if (props.setOpenState && e) {
             props.setOpenState(!isOpen);
