@@ -17,7 +17,8 @@ export default function Track(props: {
     const [editing, setEditing] = useState(false);
     const [note, setNote] = useState("this is a placeholder note for the song " + props.title + " by " + props.artist)
     const [draft, setDraft] = useState(note)
-    const [hovering, setHovering] = useState(false)
+    const [isHoveringNote, setHoveringNote] = useState(false)
+    const [isHoveringExit, setHoveringExit] = useState(false)
     
     const handleDraftChange = (event: { target: { value: SetStateAction<string>; style: { height: string; }; scrollHeight: number; }; }) => {
         // 👇️ access textarea value
@@ -28,7 +29,6 @@ export default function Track(props: {
     
     const saveDraft = () =>{
         setNote(draft)
-        // setEditing(false)
     }
 
     const getNoteHeight = () => {
@@ -47,9 +47,9 @@ export default function Track(props: {
                             borderBottomLeftRadius: 0,
                             borderBottomRightRadius: 0,
                             border: "0.5px black dashed",
-                            borderBottomWidth: 1
+                            borderBottomWidth: 0.5,
                         } : {
-                            marginBottom: 5
+                            marginBottom: 10
                         }} >
                     <div className="index">{props.index}</div> 
 
@@ -67,13 +67,18 @@ export default function Track(props: {
 
                     <div className="length">{props.length}</div>
                 </div>} >
-        <div className="track-note-container"> 
+        <div className="track-note-container"  
+             onMouseEnter={()=>setHoveringNote(true)}
+             onMouseLeave={()=>setHoveringNote(false)}> 
         <div className="track-note">
             {!editing ?  
                 <>
                     {note}
                     {props.editable ?
-                        <><p><button onClick={() => setEditing(true)}>edit</button></p></> : <></>
+                        <><p style={{opacity: isHoveringNote ? "100%" : "30%",
+                                     transition: "all 0.1s ease"}}>
+                            <button onClick={() => setEditing(true)}>edit</button>
+                        </p></> : <></>
                     }
                 
                 </>
@@ -88,16 +93,19 @@ export default function Track(props: {
                         <button onClick={() => saveDraft()}
                                 disabled={(draft == note) ? true : false}>save</button>
                         <button onClick={() => setEditing(false)}
-                                onMouseEnter={() => setHovering(true)}
-                                onMouseLeave={() => setHovering(false)}>exit</button>
+                                onMouseMove={() => draft != note ? setHoveringExit(true) : {}}
+                                onMouseLeave={() => setHoveringExit(false)}
+                                onMouseOut={() => setHoveringExit(false)}
+                                onMouseUp={() => setHoveringExit(false)}>exit</button>
     
                          <span style={{
-                                opacity: (hovering && draft != note ? "100%" : "0%"),
+                                opacity: (isHoveringExit && draft != note ? "100%" : "0%"),
                                 color: "red", 
                                 fontSize: "small", 
-                                transition:"all 0.1s ease"
+                                transition:"all 0.1s ease",
+                                userSelect: "none"
                             }}> 
-                            are you sure? your changes will be discarded!</span> 
+                            you have unsaved changes -- are you sure you want to exit?</span> 
                         
                     </p>
                 </> 
