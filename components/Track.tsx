@@ -47,6 +47,7 @@ export default function Track(props: {
                     <div className="length">{props.length}</div>
                 </div>} >
             
+            
             <div className="track-note"> note box </div>
         </Accordion>
         </>
