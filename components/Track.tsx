@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import Accordion from "react-robust-accordion";
 
 export default function Track(props: {
@@ -8,11 +8,31 @@ export default function Track(props: {
     link: string,
     artist: string,
     album: string,
-    length: string 
+    length: string,
+    editable: boolean,
         }
     ) {
     
     const [openState, setOpenState] = useState(false);
+    const [editing, setEditing] = useState(false);
+    const [note, setNote] = useState("this is a placeholder note for the song " + props.title + " by " + props.artist)
+    const [draft, setDraft] = useState(note)
+    
+    const handleDraftChange = (event: { target: { value: SetStateAction<string>; style: { height: string; }; scrollHeight: number; }; }) => {
+        // 👇️ access textarea value
+        setDraft(event.target.value);
+        event.target.style.height = "0px"
+        event.target.style.height = event.target.scrollHeight + "px"
+      };
+    
+    const saveDraft = () =>{
+        setNote(draft)
+        setEditing(false)
+    }
+
+    const getNoteHeight = () => {
+
+    }
 
     return (
         <>
@@ -46,9 +66,38 @@ export default function Track(props: {
 
                     <div className="length">{props.length}</div>
                 </div>} >
+        <div className="track-note-container"> 
+        <div className="track-note">
+            {!editing ?  
+                <>
+                
+
+                    {note}
+                    {props.editable ?
+                        <> 
+                            <p style={{color: "blue"}}> <button onClick={() => setEditing(true)}>edit</button> </p>
+                        </> 
+                    : 
+                        <></>
+                    }
+                
+                </>
+
+                :  
+                <>
+                    <textarea autoFocus
+                        style={{width: "100%", height: "auto", resize:"none", fontSize: "120%"}} 
+                        onFocus={handleDraftChange}
+                        onChange={handleDraftChange}>{note}</textarea>
+                    <p> 
+                        <button onClick={() => saveDraft()}>save</button>
+                        <button onClick={() => setEditing(false)}>cancel</button>
+                    </p>
+                </> 
+            }
+        </div> 
+        </div>
             
-            
-            <div className="track-note"> note box </div>
         </Accordion>
         </>
     )

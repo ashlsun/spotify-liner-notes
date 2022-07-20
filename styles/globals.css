@@ -138,9 +138,13 @@ input {
     font-family: 'Courier';
 }
 
-button{
+.enter-button {
     margin-left: 20px;
+}
+
+button {
     font-family: Courier;
+    margin-right: 20px;
     color: rgb(85, 85, 85);
     border: 1px solid;
     border-radius: 5px;
@@ -157,7 +161,7 @@ button:hover{
 button:active{
     background-color: black;
     border-color: rgb(59, 59, 59);
-    color:rgb(59, 59, 59);
+    color:white;
     transition: color 0.3;
 }
 
@@ -172,9 +176,9 @@ input:focus {
     outline: none;
 }
 
-.track-note{
+.track-note-container{
     overflow: hidden;
-    transition: max-height 0.5s ease;
+    transition: all 0.2s ease;
     color: black;
     border: var(--open-note-border);
     border-top: 0px transparent;
@@ -191,6 +195,11 @@ input:focus {
     z-index: -1; */
 }
 
+.track-note{
+    max-width: 900px;
+    white-space: pre-line;
+}
+
 .center {
     position: absolute;
     top: 50%;
@@ -205,4 +214,13 @@ a {
 
 a:hover{
     text-decoration: underline;
+}
+
+textarea{
+    border-radius: 5px;
+    border-style: dashed;
+}
+
+textarea:focus{
+    outline: black;
 }

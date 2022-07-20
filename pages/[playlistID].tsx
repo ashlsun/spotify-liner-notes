@@ -93,7 +93,8 @@ export default function PlaylistPage(prop: {playlistID:string}
                                 link={item['track']['external_urls']['spotify']}
                                 artist={item['track']['artists'][0]['name']} 
                                 album={item['track']['album']['name']} 
-                                length={durationFormatter(item['track']['duration_ms'])} 
+                                length={durationFormatter(item['track']['duration_ms'])}
+                                editable={true} 
                             />
                         ))}
                     </div>
