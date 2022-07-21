@@ -73,7 +73,7 @@ export default function Track(props: {
         <div className="track-note">
             {!editing ?  
                 <>
-                    {note}
+                    <textarea disabled className="viewing">{note}</textarea>
                     {props.editable ?
                         <><p style={{opacity: isHoveringNote ? "100%" : "30%",
                                      transition: "all 0.1s ease"}}>
@@ -86,7 +86,6 @@ export default function Track(props: {
                 :  
                 <>
                     <textarea autoFocus
-                        style={{width: "100%", height: "auto", resize:"none", fontSize: "120%"}} 
                         onFocus={handleDraftChange}
                         onChange={handleDraftChange}>{note}</textarea>
                     <p> 
