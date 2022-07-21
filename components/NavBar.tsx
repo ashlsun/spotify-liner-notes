@@ -1,10 +1,15 @@
 import { useState } from "react";
 
-export default function NavBar(props: {} ) {
+export default function NavBar(props: {
+    status: string
+} ) {
     return (
     <>
     <div className="navbar">
         <strong>Liner Notes</strong>
+        <div style={{color: "rgba(0,0,0,0.5"}}>
+            {props.status ? <>: {props.status}</> : ""}
+        </div>
     
     <div className="navlink-section">
         <div className="navlink">

@@ -41,7 +41,7 @@ export default function PlaylistPage(prop: {playlistID:string}
             <Head>
                 <title>Liner Notes{playlistObject ? ": " + playlistObject['name'] : ""} </title>
             </Head>
-            <NavBar></NavBar>
+            <NavBar status={playlistObject ? '"' + playlistObject['name'] + '"': ""}></NavBar>
             {isError ? 
                 <>
                     <div className="center"> 

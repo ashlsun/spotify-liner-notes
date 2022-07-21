@@ -73,7 +73,9 @@ export default function Track(props: {
         <div className="track-note">
             {!editing ?  
                 <>
-                    <textarea disabled className="viewing">{note}</textarea>
+                    <textarea disabled className="viewing" 
+                        value={note}
+                        name="view-note"></textarea>
                     {props.editable ?
                         <><p style={{opacity: isHoveringNote ? "100%" : "30%",
                                      transition: "all 0.1s ease"}}>
@@ -85,13 +87,16 @@ export default function Track(props: {
 
                 :  
                 <>
+                    {/* <p style={{color:"rgba(0,0,0,0.5"}}>EDITING:</p> */}
                     <textarea autoFocus
                         onFocus={handleDraftChange}
-                        onChange={handleDraftChange}>{note}</textarea>
+                        onChange={handleDraftChange}
+                        value={draft}
+                        name="edit-note"></textarea>
                     <p> 
                         <button onClick={() => saveDraft()}
                                 disabled={(draft == note) ? true : false}>save</button>
-                        <button onClick={() => setEditing(false)}
+                        <button onClick={() => {setEditing(false); setDraft(note)}}
                                 onMouseMove={() => draft != note ? setHoveringExit(true) : {}}
                                 onMouseLeave={() => setHoveringExit(false)}
                                 onMouseOut={() => setHoveringExit(false)}
