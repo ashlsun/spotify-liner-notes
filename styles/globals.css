@@ -41,6 +41,23 @@ h1 {
         padding-bottom: 0px;
         display: flex;
     }
+    
+    .playlist-search-bar{
+        position: relative;
+        margin-top: auto;
+        width: 200px;
+    }
+
+    .center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%)
+    }
+
+    .enter-button {
+        margin-left: 20px;
+    }
 }
 
 
@@ -71,8 +88,15 @@ h1 {
         max-width: 90%;
     }
 
+
+    .center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%)
+    }
     .playlist-search-bar{
-        max-width: 90%;
+        max-width: 50%;
     }
 }
 
@@ -164,10 +188,6 @@ input {
     font-family: 'Courier';
 }
 
-.enter-button {
-    margin-left: 20px;
-}
-
 button {
     font-family: Courier;
     margin-right: 20px;
@@ -208,13 +228,6 @@ button:disabled:hover{
 }
 
 
-.playlist-search-bar{
-    position: relative;
-    margin-top: auto;
-    width: 200px;
-}
-
-
 input:focus {
     outline: none;
 }
@@ -243,12 +256,6 @@ input:focus {
     white-space: pre-line;
 }
 
-.center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%)
-}
 
 a {
     color: inherit;
