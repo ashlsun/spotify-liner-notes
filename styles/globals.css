@@ -33,6 +33,11 @@ h1 {
     margin: 0;
     font-size: 50px;
 }
+.playlist-search-bar{
+    position: relative;
+    margin-top: auto;
+    width: 200px;
+}
 
 @media screen and (min-width: 600px) {
     #page-header{
@@ -42,11 +47,6 @@ h1 {
         display: flex;
     }
     
-    .playlist-search-bar{
-        position: relative;
-        margin-top: auto;
-        width: 200px;
-    }
 
     .center {
         position: absolute;
@@ -78,27 +78,7 @@ h1 {
     /* box-shadow: 5px 5px 50px rgba(0,0,0,.7); */
 }
 
-@media screen and (max-width: 600px) {
-    h1 {
-        font-size:30px;
-    }
-    #playlist-cover{
-        margin-top: 20%;
-        margin-left: 15%;
-        max-width: 90%;
-    }
 
-
-    .center {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%)
-    }
-    .playlist-search-bar{
-        max-width: 50%;
-    }
-}
 
 #tracklist-headings{
     display:flex;
@@ -305,4 +285,33 @@ textarea:focus{
 .navlink {
     padding-left: 10px;
     padding-right: 10px;
+}
+
+@media screen and (max-width: 600px) {
+    h1 {
+        font-size:30px;
+    }
+    #playlist-cover{
+        margin-top: 20%;
+        margin-left: 15%;
+        max-width: 90%;
+    }
+
+
+    .center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 50%)
+    }
+
+    .importInput{
+        max-width: 50%;
+        margin-left:25%;
+    }
+
+    button {
+        margin-left: 10px;
+        margin-right: auto;
+    }
 }
