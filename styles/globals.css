@@ -34,11 +34,18 @@ h1 {
     font-size: 50px;
 }
 
+@media screen and (min-width: 600px) {
+    #page-header{
+        padding: 50px;
+        padding-top: 100px;
+        padding-bottom: 0px;
+        display: flex;
+    }
+}
+
+
+
 #page-header{
-    padding: 50px;
-    padding-top: 100px;
-    padding-bottom: 0px;
-    display: flex;
     z-index: 1;
     
 }
@@ -52,6 +59,21 @@ h1 {
     padding: 30px;
     border: 1px black dashed;
     /* box-shadow: 5px 5px 50px rgba(0,0,0,.7); */
+}
+
+@media screen and (max-width: 600px) {
+    h1 {
+        font-size:30px;
+    }
+    #playlist-cover{
+        margin-top: 20%;
+        margin-left: 15%;
+        max-width: 90%;
+    }
+
+    .playlist-search-bar{
+        max-width: 90%;
+    }
 }
 
 #tracklist-headings{
