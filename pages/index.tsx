@@ -51,7 +51,7 @@ export default function Index() {
             <title>Liner Notes </title>
         </Head>
 
-        <NavBar></NavBar>
+        <NavBar status=""></NavBar>
             {/* <input type="text" value={newPostBody} onChange={e => setNewPostBody(e.target.value)} />
             <button onClick={onAdd}>Add</button> */}
 
