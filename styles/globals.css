@@ -181,7 +181,7 @@ input {
 
 button {
     font-family: Courier;
-    margin-right: 20px;
+    margin-right: 12px;
     color: var(--main-color-lite);
     border: 1px solid;
     border-radius: 5px;

@@ -4,7 +4,8 @@ import {durationFormatter, durationSum} from  "../../utils/utils";
 import Track from "../../components/Track";
 import NavBar from "../../components/NavBar";
 import Head from "next/head";
-import { TbSearch } from 'react-icons/tb';
+import { TbSearch, TbUpload, TbDownload } from 'react-icons/tb';
+import { BsArrowsExpand, BsArrowsCollapse } from 'react-icons/bs'
 import { IconContext } from "react-icons";
 
 export async function getServerSideProps(context: any){
@@ -70,12 +71,29 @@ export default function PlaylistPage(prop: {playlistID:string}
                             <p className="desc">{playlistObject['description']}</p>
                             <p>{playlistObject['owner']['display_name']} • {playlistObject['tracks']['total']} songs, 
                             <span className="desc"> {durationFormatter(durationSum(playlistObject))} </span></p>
-                            <button style={{padding: 5}}
+
+                            <button style={{padding: 5}}> 
+                                <IconContext.Provider value={{ style: { verticalAlign: 'sub' } }}>
+                                    <BsArrowsExpand/> 
+                                </IconContext.Provider> EXPAND ALL </button>
+
+                            <button style={{padding: 5}}> 
+                                <IconContext.Provider value={{ style: { verticalAlign: 'sub' } }}>
+                                    <TbDownload/> 
+                                </IconContext.Provider> EXPORT </button>
+
+                            <button style={{padding: 5}}>
+                                <IconContext.Provider value={{ style: { verticalAlign: 'sub' } }}>
+                                    <TbUpload/> 
+                                </IconContext.Provider> SAVE </button>
+                            
+
+
+                            <button style={{padding: 5, marginRight: 15}}
                                 onClick={() => setSearchBarVisible(!searchBarVisible)}>
                                 <IconContext.Provider value={{ style: { verticalAlign: 'sub' } }}>
                                     <TbSearch /> SEARCH
-                                </IconContext.Provider>
-                            </button>
+                                </IconContext.Provider> </button>
 
                             <input className="playlist-search-bar" 
                                 style={(searchBarVisible ? {} : {maxWidth: 0, borderColor: "transparent"})}
