@@ -1,5 +1,7 @@
 import { SetStateAction, useState } from "react";
 import Accordion from "react-robust-accordion";
+import { TbNotes } from 'react-icons/tb';
+import { IconContext } from "react-icons";
 
 export default function Track(props: {
     index: number,
@@ -10,6 +12,9 @@ export default function Track(props: {
     album: string,
     length: string,
     editable: boolean,
+    visible: boolean,
+    note: string,
+    // setNote: (index: number, note: string) => any,
         }
     ) {
     
@@ -36,6 +41,7 @@ export default function Track(props: {
     }
 
     return (
+        props.visible ? 
         <>
         <Accordion 
             openState={openState}
@@ -51,8 +57,21 @@ export default function Track(props: {
                         } : {
                             marginBottom: 10
                         }} >
-                    <div className="index">{props.index}</div> 
 
+                    <div className="note-icon">
+                        {(props.note ? <>
+                            <IconContext.Provider value={{ style: { verticalAlign: 'sub' } }}>
+                                <TbNotes/>    
+                            </IconContext.Provider>
+                            </>
+                        : 
+                        <></>)}
+                        
+                        
+                    </div>
+                    
+                    <div className="index">{props.index}</div> 
+                    
                     <div className="song">
                         <div className="song-title"> 
                             <a href={props.link} target="_blank"> 
@@ -73,7 +92,8 @@ export default function Track(props: {
         <div className="track-note">
             {!editing ?  
                 <>
-                    <textarea disabled className="viewing" 
+                    <textarea disabled autoFocus
+                        className="viewing" 
                         value={note}
                         name="view-note"></textarea>
                     {props.editable ?
@@ -87,7 +107,6 @@ export default function Track(props: {
 
                 :  
                 <>
-                    {/* <p style={{color:"rgba(0,0,0,0.5"}}>EDITING:</p> */}
                     <textarea autoFocus
                         onFocus={handleDraftChange}
                         onChange={handleDraftChange}
@@ -118,6 +137,6 @@ export default function Track(props: {
         </div>
             
         </Accordion>
-        </>
+        </> : <></>
     )
 }

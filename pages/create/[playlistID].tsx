@@ -48,7 +48,7 @@ export default function PlaylistPage(prop: {playlistID:string}
                         <p>Error: Playlist not found.</p>
                         <p> Did you enter the right link? Is the playlist public?  </p>
                         <br></br>
-                        <a href="/">return home</a>
+                        <a href="/" className="underline">return home</a>
                     </div>
                 </>  
             : 
@@ -72,6 +72,7 @@ export default function PlaylistPage(prop: {playlistID:string}
             
                     <div id="tracklist">
                         <div id="tracklist-headings"> 
+                            <div className="note-icon"></div>
                             <div className="index"> # </div>
                             <div className="song">TITLE</div> 
                             <div className="album">ALBUM</div>
@@ -81,11 +82,13 @@ export default function PlaylistPage(prop: {playlistID:string}
         
                         <hr style={{color:"grey"}}/>
         
-                        {playlistObject['tracks']['items'].filter(
-                            (d: any) => d['track']['name'].toLowerCase().includes(search.toLowerCase()) || 
-                            d['track']['artists'][0]['name'].toLowerCase().includes(search.toLowerCase()) || 
-                            d['track']['album']['name'].toLowerCase().includes(search.toLowerCase())).map(
+                        {playlistObject['tracks']['items'].map(
                                 (item : any, i : number) => (
+                        // .filter(
+                        //     (d: any) => d['track']['name'].toLowerCase().includes(search.toLowerCase()) || 
+                        //     d['track']['artists'][0]['name'].toLowerCase().includes(search.toLowerCase()) || 
+                        //     d['track']['album']['name'].toLowerCase().includes(search.toLowerCase())).map(
+                        //         (item : any, i : number) => (
                             <Track 
                                 key={item['added_at'] + item['track']['id']}
                                 addedAt={item['added_at']} 
@@ -96,6 +99,11 @@ export default function PlaylistPage(prop: {playlistID:string}
                                 album={item['track']['album']['name']} 
                                 length={durationFormatter(item['track']['duration_ms'])}
                                 editable={true} 
+                                visible={item['track']['name'].toLowerCase().includes(search.toLowerCase()) || 
+                                    item['track']['artists'][0]['name'].toLowerCase().includes(search.toLowerCase()) || 
+                                    item['track']['album']['name'].toLowerCase().includes(search.toLowerCase())}
+                                note="yes"
+                                // setNote={setNoteByIndex}
                             />
                         ))}
                     </div>

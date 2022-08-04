@@ -59,7 +59,9 @@ export default function Index() {
                     <p > Please enter the URL/URI to your Spotify playlist! </p>
                     <div className="center" 
                         style={{display: "flex", transform: "translate(-50%, 100%)"}}> 
-                        <input style={{width:300}} 
+                        <input
+                            className="importInput"
+                            style={{width:300}} 
                             value={playlistId} 
                             onChange={e => setPlaylistId(e.target.value)}
                         />
