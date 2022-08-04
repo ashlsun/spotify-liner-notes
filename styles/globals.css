@@ -38,6 +38,9 @@ h1 {
     position: relative;
     margin-top: auto;
     width: 200px;
+    max-width: 100%;
+    transition: max-width 0.5s;
+
 }
 
 @media screen and (min-width: 600px) {
@@ -167,6 +170,8 @@ input {
     color: rgba(0,0,0,0.5);
     font-family: 'Courier';
     max-height: 13px;
+    transition: border-color 0.3s;
+
 }
 
 ::placeholder{

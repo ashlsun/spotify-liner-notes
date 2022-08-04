@@ -4,6 +4,8 @@ import {durationFormatter, durationSum} from  "../../utils/utils";
 import Track from "../../components/Track";
 import NavBar from "../../components/NavBar";
 import Head from "next/head";
+import { TbSearch } from 'react-icons/tb';
+import { IconContext } from "react-icons";
 
 export async function getServerSideProps(context: any){
     const playlistID = context.params.playlistID;
@@ -20,8 +22,10 @@ export default function PlaylistPage(prop: {playlistID:string}
         const playlistID = prop.playlistID
 
         const [playlistObject, setPlaylistObject] = useState<any>(null);
+        const [searchBarVisible, setSearchBarVisible] = useState(false);
         const [search, setSearch] = useState("");
-        const [isError, setIsError] = useState(false)
+        const [isError, setIsError] = useState(false);
+        
 
         useEffect(() => {
 
@@ -66,7 +70,26 @@ export default function PlaylistPage(prop: {playlistID:string}
                             <p className="desc">{playlistObject['description']}</p>
                             <p>{playlistObject['owner']['display_name']} • {playlistObject['tracks']['total']} songs, 
                             <span className="desc"> {durationFormatter(durationSum(playlistObject))} </span></p>
-                            <input className="playlist-search-bar" type="text" value={search} onChange={e => setSearch(e.target.value)} placeholder="Filter songs..." />
+                            <button style={{padding: 5}}
+                                onClick={() => setSearchBarVisible(!searchBarVisible)}>
+                                <IconContext.Provider value={{ style: { verticalAlign: 'sub' } }}>
+                                    <TbSearch /> SEARCH
+                                </IconContext.Provider>
+                            </button>
+
+                            <input className="playlist-search-bar" 
+                                style={(searchBarVisible ? {} : {maxWidth: 0, borderColor: "transparent"})}
+                                type="text" 
+                                value={search} 
+                                onChange={e => setSearch(e.target.value)} 
+                                placeholder="Filter songs..." />
+
+
+                            {/* {( searchBarVisible ? 
+                                <input className="playlist-search-bar" type="text" value={search} onChange={e => setSearch(e.target.value)} placeholder="Filter songs..." />
+                            :
+                                <></>
+                            )} */}
                         </div>
                     </div>
             
