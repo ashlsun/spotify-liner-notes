@@ -37,9 +37,11 @@ h1 {
 .playlist-search-bar{
     position: relative;
     width: 200px;
-    max-width: 100%;
-    transition: max-width 0.5s;
+    transition: width 0.3s;
+}
 
+.enter-button{
+    height: 35px;
 }
 
 @media screen and (min-width: 600px) {

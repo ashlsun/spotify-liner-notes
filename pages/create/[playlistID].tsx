@@ -106,7 +106,7 @@ export default function PlaylistPage(prop: {playlistID:string}
                                 <>
                                     <button style={{padding: 5}} onClick={() => collapseAll()}> 
                                     <IconContext.Provider value={{ style: { verticalAlign: 'sub' } }}>
-                                        <BsArrowsExpand/> 
+                                        <BsArrowsCollapse/> 
                                     </IconContext.Provider> COLLAPSE ALL </button>
                                 </>
                                 :
@@ -142,7 +142,7 @@ export default function PlaylistPage(prop: {playlistID:string}
                                 </IconContext.Provider> </button>
 
                             <input className="playlist-search-bar" 
-                                style={(searchBarVisible ? {} : {maxWidth: 0, borderColor: "transparent"})}
+                                style={(searchBarVisible ? {} : {width: 0, borderColor: "transparent"})}
                                 type="text" 
                                 value={search} 
                                 onChange={e => setSearch(e.target.value)} 
