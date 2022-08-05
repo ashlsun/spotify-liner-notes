@@ -71,8 +71,15 @@ export default function PlaylistPage(prop: {playlistID:string}
             setExpanded(expandedCopy)
         }
 
-        function expandAll(){            
-            const newExpanded = new Array(length).fill(true);
+        function expandAll(){
+            let newExpanded = []
+            for (let i = 0; i < length; i++){
+                if (notesArray[i]){
+                    newExpanded.push(true)
+                } else {
+                    newExpanded.push(false)
+                }
+            }
             setExpanded(newExpanded)
         }
         
@@ -81,13 +88,22 @@ export default function PlaylistPage(prop: {playlistID:string}
             setExpanded(newExpanded)
         }
         
-        function checkAllExpanded(){
+        function checkAllNotesExpanded(){
            for (let i = 0; i < expanded.length; i++){
-            if (!expanded[i]){
+            if (!expanded[i] && notesArray[i]){
                 return false
             } 
            }
            return true
+        }
+
+        function checkNoNotes(){
+            for (let i = 0; i < notesArray.length; i++){
+                if (notesArray[i]){
+                    return false
+                } 
+               }
+            return true
         }
 
         useEffect(() => {
@@ -143,37 +159,47 @@ export default function PlaylistPage(prop: {playlistID:string}
                             <p>{playlistObject['owner']['display_name']} • {playlistObject['tracks']['total']} songs, 
                             <span className="desc"> {durationFormatter(durationSum(playlistObject))} </span></p>
 
-                            {(
-                                checkAllExpanded() ? 
-                                <>
-                                    <button style={{padding: 5}} onClick={() => collapseAll()}> 
-                                    <IconContext.Provider value={{ style: { verticalAlign: 'sub' } }}>
-                                        <BsArrowsCollapse/> 
-                                    </IconContext.Provider> COLLAPSE ALL </button>
-                                </>
-                                :
-                                <>
+                            {(checkNoNotes() ? 
+                            <></>
+                            : 
+                                (checkAllNotesExpanded() ? 
+                                    <>
+                                        <button style={{padding: 5}} onClick={() => collapseAll()}> 
+                                        <IconContext.Provider value={{ style: { verticalAlign: 'sub' } }}>
+                                            <BsArrowsCollapse/> 
+                                        </IconContext.Provider> COLLAPSE ALL </button>
+                                    </>
+                                    :
+                                    <>
+                                        <button style={{padding: 5}} onClick={() => expandAll()}> 
+                                        <IconContext.Provider value={{ style: { verticalAlign: 'sub' } }}>
+                                            <BsArrowsExpand/> 
+                                        </IconContext.Provider> EXPAND ALL </button>
+                                    </>
+                                ) 
+                            )
+                            }
 
-                                    <button style={{padding: 5}} onClick={() => expandAll()}> 
+                            {
+                                checkNoNotes() ? <></>:
+                                <>
+                                    <button style={{padding: 5}} onClick={()=>exportNotes()}> 
                                     <IconContext.Provider value={{ style: { verticalAlign: 'sub' } }}>
-                                        <BsArrowsExpand/> 
-                                    </IconContext.Provider> EXPAND ALL </button>
-                                    
+                                        <TbDownload/> 
+                                    </IconContext.Provider> EXPORT </button>
+
+                                    <button style={{padding: 5}}>
+                                    <IconContext.Provider value={{ style: { verticalAlign: 'sub' } }}>
+                                        <TbUpload/> 
+                                    </IconContext.Provider> PUBLISH </button>
                                 </>
-                            )}
+
+                            }
                             
 
                             
 
-                            <button style={{padding: 5}} onClick={()=>exportNotes()}> 
-                                <IconContext.Provider value={{ style: { verticalAlign: 'sub' } }}>
-                                    <TbDownload/> 
-                                </IconContext.Provider> EXPORT </button>
-
-                            <button style={{padding: 5}}>
-                                <IconContext.Provider value={{ style: { verticalAlign: 'sub' } }}>
-                                    <TbUpload/> 
-                                </IconContext.Provider> PUBLISH </button>
+                            
                             
 
 
