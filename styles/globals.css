@@ -36,7 +36,6 @@ h1 {
 }
 .playlist-search-bar{
     position: relative;
-    margin-top: auto;
     width: 200px;
     max-width: 100%;
     transition: max-width 0.5s;
@@ -188,6 +187,8 @@ button {
     border-color:var(--main-color-lite);
     transition: border-color 0.3;
     background-color: transparent;
+    margin-bottom: 10px;
+
 }
 
 button:hover{
@@ -283,7 +284,7 @@ textarea:focus{
     width: 100%;
     display: inline-flex;
     position: fixed;
-    background-color: rgba(255,255,255,.6);
+    background-color: rgba(255,255,255,.85);
     border-bottom: black 1px dashed;
     z-index: 1;
 }
