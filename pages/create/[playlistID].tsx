@@ -26,7 +26,32 @@ export default function PlaylistPage(prop: {playlistID:string}
         const [searchBarVisible, setSearchBarVisible] = useState(false);
         const [search, setSearch] = useState("");
         const [isError, setIsError] = useState(false);
+        const [expanded, setExpanded] = useState<boolean[]>([]);
+
+        function setExpandedByIndex(i:number, val:boolean){
+            let expandedCopy = JSON.parse(JSON.stringify(expanded));
+            expandedCopy[i] = val
+            setExpanded(expandedCopy)
+        }
+
+        function expandAll(){            
+            const newExpanded = new Array(length).fill(true);
+            setExpanded(newExpanded)
+        }
         
+        function collapseAll(){
+            const newExpanded = new Array(length).fill(false);
+            setExpanded(newExpanded)
+        }
+        
+        function checkAllExpanded(){
+           for (let i = 0; i < expanded.length; i++){
+            if (!expanded[i]){
+                return false
+            } 
+           }
+           return true
+        }
 
         useEffect(() => {
 
@@ -34,12 +59,16 @@ export default function PlaylistPage(prop: {playlistID:string}
                 playlistID: playlistID
                 }).then(res => {
                     setPlaylistObject(res.data);
-                    console.log(res.data);
+                    const length = res.data['tracks']['items'].length
+                    const newExpanded = new Array(length).map(()=>false);
+                    setExpanded(newExpanded);
                 }).catch(e => {
                     setIsError(true)
                     console.log(e);
                 });
+
         }, []);
+
 
         return ( 
             <>
@@ -72,10 +101,27 @@ export default function PlaylistPage(prop: {playlistID:string}
                             <p>{playlistObject['owner']['display_name']} • {playlistObject['tracks']['total']} songs, 
                             <span className="desc"> {durationFormatter(durationSum(playlistObject))} </span></p>
 
-                            <button style={{padding: 5}}> 
-                                <IconContext.Provider value={{ style: { verticalAlign: 'sub' } }}>
-                                    <BsArrowsExpand/> 
-                                </IconContext.Provider> EXPAND ALL </button>
+                            {(
+                                checkAllExpanded() ? 
+                                <>
+                                    <button style={{padding: 5}} onClick={() => collapseAll()}> 
+                                    <IconContext.Provider value={{ style: { verticalAlign: 'sub' } }}>
+                                        <BsArrowsExpand/> 
+                                    </IconContext.Provider> COLLAPSE ALL </button>
+                                </>
+                                :
+                                <>
+
+                                    <button style={{padding: 5}} onClick={() => expandAll()}> 
+                                    <IconContext.Provider value={{ style: { verticalAlign: 'sub' } }}>
+                                        <BsArrowsExpand/> 
+                                    </IconContext.Provider> EXPAND ALL </button>
+                                    
+                                </>
+                            )}
+                            
+
+                            
 
                             <button style={{padding: 5}}> 
                                 <IconContext.Provider value={{ style: { verticalAlign: 'sub' } }}>
@@ -85,7 +131,7 @@ export default function PlaylistPage(prop: {playlistID:string}
                             <button style={{padding: 5}}>
                                 <IconContext.Provider value={{ style: { verticalAlign: 'sub' } }}>
                                     <TbUpload/> 
-                                </IconContext.Provider> SAVE </button>
+                                </IconContext.Provider> PUBLISH </button>
                             
 
 
@@ -143,6 +189,8 @@ export default function PlaylistPage(prop: {playlistID:string}
                                 visible={item['track']['name'].toLowerCase().includes(search.toLowerCase()) || 
                                     item['track']['artists'][0]['name'].toLowerCase().includes(search.toLowerCase()) || 
                                     item['track']['album']['name'].toLowerCase().includes(search.toLowerCase())}
+                                open={expanded[i]}
+                                setOpen={(bool: boolean) => setExpandedByIndex(i, bool)}
                                 note="yes"
                                 // setNote={setNoteByIndex}
                             />

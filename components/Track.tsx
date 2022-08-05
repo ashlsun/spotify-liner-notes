@@ -13,12 +13,14 @@ export default function Track(props: {
     length: string,
     editable: boolean,
     visible: boolean,
+    open: boolean,
+    setOpen: (bool: boolean) => any,
     note: string,
     // setNote: (index: number, note: string) => any,
         }
     ) {
     
-    const [openState, setOpenState] = useState(false);
+    // const [openState, setOpenState] = useState(false);
     const [editing, setEditing] = useState(false);
     const [note, setNote] = useState("this is a placeholder note for the song " + props.title + " by " + props.artist)
     const [draft, setDraft] = useState(note)
@@ -44,11 +46,11 @@ export default function Track(props: {
         props.visible ? 
         <>
         <Accordion 
-            openState={openState}
-            setOpenState={setOpenState}
+            openState={props.open}
+            setOpenState={props.setOpen}
             label={
                 <div className="track"
-                    style={openState ? {
+                    style={props.open ? {
                             backgroundColor: "var(--track-bg)",
                             borderBottomLeftRadius: 0,
                             borderBottomRightRadius: 0,
