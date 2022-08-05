@@ -26,7 +26,15 @@ export default function PlaylistPage(prop: {playlistID:string}
         const [searchBarVisible, setSearchBarVisible] = useState(false);
         const [search, setSearch] = useState("");
         const [isError, setIsError] = useState(false);
+
         const [expanded, setExpanded] = useState<boolean[]>([]);
+        const [notesArray, setNotesArray] = useState<string[]>([]);
+
+        function setNoteByIndex(i:number, val:string){
+            let notesCopy = JSON.parse(JSON.stringify(notesArray));
+            notesCopy[i] = val
+            setNotesArray(notesCopy)
+        }
 
         function setExpandedByIndex(i:number, val:boolean){
             let expandedCopy = JSON.parse(JSON.stringify(expanded));
@@ -60,8 +68,13 @@ export default function PlaylistPage(prop: {playlistID:string}
                 }).then(res => {
                     setPlaylistObject(res.data);
                     const length = res.data['tracks']['items'].length
+
                     const newExpanded = new Array(length).map(()=>false);
                     setExpanded(newExpanded);
+
+                    const newNotesArray = new Array(length).fill("no note yet");
+                    setNotesArray(newNotesArray);
+
                 }).catch(e => {
                     setIsError(true)
                     console.log(e);
@@ -191,7 +204,8 @@ export default function PlaylistPage(prop: {playlistID:string}
                                     item['track']['album']['name'].toLowerCase().includes(search.toLowerCase())}
                                 open={expanded[i]}
                                 setOpen={(bool: boolean) => setExpandedByIndex(i, bool)}
-                                note="yes"
+                                note={notesArray[i]}
+                                setNote={(note: string) => setNoteByIndex(i, note)}
                                 // setNote={setNoteByIndex}
                             />
                         ))}

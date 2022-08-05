@@ -16,14 +16,14 @@ export default function Track(props: {
     open: boolean,
     setOpen: (bool: boolean) => any,
     note: string,
-    // setNote: (index: number, note: string) => any,
+    setNote: (note: string) => any,
         }
     ) {
     
     // const [openState, setOpenState] = useState(false);
     const [editing, setEditing] = useState(false);
-    const [note, setNote] = useState("this is a placeholder note for the song " + props.title + " by " + props.artist)
-    const [draft, setDraft] = useState(note)
+    // const [note, setNote] = useState("this is a placeholder note for the song " + props.title + " by " + props.artist)
+    const [draft, setDraft] = useState(props.note)
     const [isHoveringNote, setHoveringNote] = useState(false)
     const [isHoveringExit, setHoveringExit] = useState(false)
     
@@ -35,7 +35,7 @@ export default function Track(props: {
       };
     
     const saveDraft = () =>{
-        setNote(draft)
+        props.setNote(draft)
     }
 
     const getNoteHeight = () => {
@@ -96,7 +96,7 @@ export default function Track(props: {
                 <>
                     <textarea disabled autoFocus
                         className="viewing" 
-                        value={note}
+                        value={props.note}
                         name="view-note"></textarea>
                     {props.editable ?
                         <><p style={{opacity: isHoveringNote ? "100%" : "30%",
@@ -116,15 +116,15 @@ export default function Track(props: {
                         name="edit-note"></textarea>
                     <p> 
                         <button onClick={() => saveDraft()}
-                                disabled={(draft == note) ? true : false}>save</button>
-                        <button onClick={() => {setEditing(false); setDraft(note)}}
-                                onMouseMove={() => draft != note ? setHoveringExit(true) : {}}
+                                disabled={(draft == props.note) ? true : false}>save</button>
+                        <button onClick={() => {setEditing(false); setDraft(props.note)}}
+                                onMouseMove={() => draft != props.note ? setHoveringExit(true) : {}}
                                 onMouseLeave={() => setHoveringExit(false)}
                                 onMouseOut={() => setHoveringExit(false)}
                                 onMouseUp={() => setHoveringExit(false)}>exit</button>
     
                          <span style={{
-                                opacity: (isHoveringExit && draft != note ? "100%" : "0%"),
+                                opacity: (isHoveringExit && draft != props.note ? "100%" : "0%"),
                                 color: "red", 
                                 fontSize: "small", 
                                 transition:"all 0.1s ease",
