@@ -30,6 +30,35 @@ export default function PlaylistPage(prop: {playlistID:string}
         const [expanded, setExpanded] = useState<boolean[]>([]);
         const [notesArray, setNotesArray] = useState<string[]>([]);
 
+        function exportNotes(){
+            let tracksAndNotesArray = ["# " + playlistObject['name'],
+                "by: " + playlistObject['owner']['display_name'], 
+                "", "---------------"]
+            for (let i = 0; i < length; i++){
+                const item = playlistObject['tracks']['items'][i]
+                tracksAndNotesArray.push((i+1).toString() + ". **" + item['track']['name'] + "** - " + item['track']['artists'][0]['name'])
+                tracksAndNotesArray.push("")
+                if (notesArray[i]){
+                    tracksAndNotesArray.push(notesArray[i])
+                    tracksAndNotesArray.push("")
+                }
+
+                tracksAndNotesArray.push("---------------")
+            }
+
+            const tracksAndNotesStr = tracksAndNotesArray.join("\n")
+            console.log(tracksAndNotesStr)
+
+            const element = document.createElement("a");
+            const file = new Blob([tracksAndNotesStr], {
+            type: "text/plain"
+            });
+            element.href = URL.createObjectURL(file);
+            element.download = playlistObject['name'] + ".md";
+            document.body.appendChild(element);
+            element.click();
+        }
+
         function setNoteByIndex(i:number, val:string){
             let notesCopy = JSON.parse(JSON.stringify(notesArray));
             notesCopy[i] = val
@@ -72,7 +101,7 @@ export default function PlaylistPage(prop: {playlistID:string}
                     const newExpanded = new Array(length).map(()=>false);
                     setExpanded(newExpanded);
 
-                    const newNotesArray = new Array(length).fill("no note yet");
+                    const newNotesArray = new Array(length).fill("");
                     setNotesArray(newNotesArray);
 
                 }).catch(e => {
@@ -136,7 +165,7 @@ export default function PlaylistPage(prop: {playlistID:string}
 
                             
 
-                            <button style={{padding: 5}}> 
+                            <button style={{padding: 5}} onClick={()=>exportNotes()}> 
                                 <IconContext.Provider value={{ style: { verticalAlign: 'sub' } }}>
                                     <TbDownload/> 
                                 </IconContext.Provider> EXPORT </button>
@@ -206,7 +235,6 @@ export default function PlaylistPage(prop: {playlistID:string}
                                 setOpen={(bool: boolean) => setExpandedByIndex(i, bool)}
                                 note={notesArray[i]}
                                 setNote={(note: string) => setNoteByIndex(i, note)}
-                                // setNote={setNoteByIndex}
                             />
                         ))}
                     </div>
