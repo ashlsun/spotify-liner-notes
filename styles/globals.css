@@ -33,6 +33,7 @@ h1 {
     font-family: 'Zen Maru Gothic';
     margin: 0;
     font-size: 50px;
+    line-height: 115%;
 }
 .playlist-search-bar{
     position: relative;
@@ -46,12 +47,17 @@ h1 {
 
 @media screen and (min-width: 600px) {
     #page-header{
+        align-items: center;
         padding: 50px;
         padding-top: 100px;
         padding-bottom: 0px;
         display: flex;
     }
     
+    #playlist-cover{ 
+        margin-bottom: 50px;
+
+    }
 
     .center {
         position: absolute;
@@ -303,6 +309,10 @@ textarea:focus{
 }
 
 @media screen and (max-width: 600px) {
+    .addedAt {
+        visibility: hidden;
+    }
+
     h1 {
         font-size:30px;
     }
