@@ -10,32 +10,50 @@ import { BsArrowsExpand, BsArrowsCollapse } from 'react-icons/bs'
 import { IconContext } from "react-icons";
 
 export async function getServerSideProps(context: any){
-    const playlistID = context.params.playlistID;
+    const playlistPageName = context.params.playlistPageName;
 
     return {
         props: {
-            playlistID: playlistID
+            playlistPageName: playlistPageName
         }
     }
 }
 
-export default function PlaylistPage(prop: {playlistID:string}
+export default function PlaylistPage(prop: {playlistPageName:string}
     )  {
-        const playlistID = prop.playlistID
+        const playlistPageName = prop.playlistPageName
+        const [playlistObject, setPlaylistObject] = useState<any>(null)
+        const [notesArray, setNotesArray] = useState([])
+        const [isError, setIsError] = useState(false)
+        const [expanded, setExpanded] = useState<boolean[]>([]);
 
-        const [playlistObject, setPlaylistObject] = useState<any>(null);
         const [searchBarVisible, setSearchBarVisible] = useState(false);
         const [search, setSearch] = useState("");
-        const [isError, setIsError] = useState(false);
 
-        const [expanded, setExpanded] = useState<boolean[]>([]);
-        const [notesArray, setNotesArray] = useState<string[]>([]);
-        const [openPublishModal, setOpenPublishModal] = useState(false)
-        const [publishError, setPublishError] = useState("")
-        const [publishSuccess, setPublishSuccess] = useState("")
+        useEffect(() => {
 
+            axios.post("/api/getPosted", {
+                page_name: playlistPageName
+                }).then(res => {
+                    console.log("success!!")
+                    console.log(res.data)
+
+                    setPlaylistObject(JSON.parse(res.data.body))
+                    setNotesArray(res.data.notes)
+                    const newExpanded = new Array(length).map(()=>false);
+                    setExpanded(newExpanded);
+
+                }).catch(e => {
+                    setIsError(true)
+                    console.log(e);
+                });
+
+        }, []);
 
         function exportNotes(){
+            if (!playlistObject) {
+                return
+            }
             let tracksAndNotesArray = ["# " + playlistObject['name'],
                 "by: " + playlistObject['owner']['display_name'], 
                 "", "---------------"]
@@ -94,7 +112,10 @@ export default function PlaylistPage(prop: {playlistID:string}
         }
         
         function checkAllNotesExpanded(){
-           for (let i = 0; i < expanded.length; i++){
+           for (let i = 0; i < notesArray.length; i++){
+            console.log("exp", expanded[i])
+            console.log("notes", notesArray[i])
+
             if (!expanded[i] && notesArray[i]){
                 return false
             } 
@@ -110,39 +131,6 @@ export default function PlaylistPage(prop: {playlistID:string}
                }
             return true
         }
-
-        function postPlaylist(input_name:string){
-            axios.post("/api/post", 
-                    {name: input_name, 
-                    body: JSON.stringify(playlistObject),
-                    notes: notesArray}
-                )
-                .then(()=> {
-                    setPublishSuccess("Successfully published playlist!")
-                    console.log("WOO")
-                }).catch(e => {setPublishError("Name already in use."); console.log(e)})
-        }
-
-        useEffect(() => {
-
-            axios.post("/api/getPlaylist", {
-                playlistID: playlistID
-                }).then(res => {
-                    setPlaylistObject(res.data);
-                    const length = res.data['tracks']['items'].length
-
-                    const newExpanded = new Array(length).map(()=>false);
-                    setExpanded(newExpanded);
-
-                    const newNotesArray = new Array(length).fill("");
-                    setNotesArray(newNotesArray);
-
-                }).catch(e => {
-                    setIsError(true)
-                    console.log(e);
-                });
-
-        }, []);
 
 
         return ( 
@@ -163,14 +151,7 @@ export default function PlaylistPage(prop: {playlistID:string}
             : 
                 ( playlistObject ?
                     <>
-                    <PublishModal 
-                        title={playlistObject['name']}
-                        visible={openPublishModal} 
-                        setVisible={(bool: boolean)=>setOpenPublishModal(bool)}
-                        publishFunction={(name: string) => postPlaylist(name)}
-                        error={publishError}
-                        success={publishSuccess}/>
-
+                
                     <div id="page-header">
                         <img id="playlist-cover" src={playlistObject['images'][0]['url']}/>
                         <div id="playlist-info">
@@ -187,19 +168,19 @@ export default function PlaylistPage(prop: {playlistID:string}
                             {(checkNoNotes() ? 
                             <></>
                             : 
-                                (checkAllNotesExpanded() ? 
-                                    <>
-                                        <button style={{padding: 5}} onClick={() => collapseAll()}> 
-                                        <IconContext.Provider value={{ style: { verticalAlign: 'sub' } }}>
-                                            <BsArrowsCollapse/> 
-                                        </IconContext.Provider> COLLAPSE ALL </button>
-                                    </>
-                                    :
+                                (!checkAllNotesExpanded() ? 
                                     <>
                                         <button style={{padding: 5}} onClick={() => expandAll()}> 
                                         <IconContext.Provider value={{ style: { verticalAlign: 'sub' } }}>
                                             <BsArrowsExpand/> 
                                         </IconContext.Provider> EXPAND ALL </button>
+                                    </>
+                                    :
+                                    <>
+                                        <button style={{padding: 5}} onClick={() => collapseAll()}> 
+                                        <IconContext.Provider value={{ style: { verticalAlign: 'sub' } }}>
+                                            <BsArrowsCollapse/> 
+                                        </IconContext.Provider> COLLAPSE ALL </button>
                                     </>
                                 ) 
                             )
@@ -213,11 +194,7 @@ export default function PlaylistPage(prop: {playlistID:string}
                                         <TbDownload/> 
                                     </IconContext.Provider> EXPORT </button>
 
-                                    <button style={{padding: 5}} onClick={()=>{setPublishError(""); setPublishSuccess("");
-                                        setOpenPublishModal(!openPublishModal)}}>
-                                    <IconContext.Provider value={{ style: { verticalAlign: 'sub' } }}>
-                                        <TbUpload/> 
-                                    </IconContext.Provider> PUBLISH </button>
+
                                 </>
 
                             }
@@ -265,11 +242,7 @@ export default function PlaylistPage(prop: {playlistID:string}
         
                         {playlistObject['tracks']['items'].map(
                                 (item : any, i : number) => (
-                        // .filter(
-                        //     (d: any) => d['track']['name'].toLowerCase().includes(search.toLowerCase()) || 
-                        //     d['track']['artists'][0]['name'].toLowerCase().includes(search.toLowerCase()) || 
-                        //     d['track']['album']['name'].toLowerCase().includes(search.toLowerCase())).map(
-                        //         (item : any, i : number) => (
+
                             <Track 
                                 key={item['added_at'] + item['track']['id']}
                                 addedAt={item['added_at']} 
@@ -279,7 +252,7 @@ export default function PlaylistPage(prop: {playlistID:string}
                                 artist={item['track']['artists'][0]['name']} 
                                 album={item['track']['album']['name']} 
                                 length={durationFormatter(item['track']['duration_ms'])}
-                                editable={true} 
+                                editable={false} 
                                 visible={item['track']['name'].toLowerCase().includes(search.toLowerCase()) || 
                                     item['track']['artists'][0]['name'].toLowerCase().includes(search.toLowerCase()) || 
                                     item['track']['album']['name'].toLowerCase().includes(search.toLowerCase())}
@@ -307,4 +280,4 @@ export default function PlaylistPage(prop: {playlistID:string}
     
             </>
         )
-    }
+}

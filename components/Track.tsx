@@ -107,16 +107,19 @@ export default function Track(props: {
                 
                 </>
 
-                :  
-                <> <p style={{color: "var(--main-color-lite)"}}> No note has been added to this track yet —— click "create" to start one!</p>
+                :  (props.editable ? <>
+                    <p style={{color: "var(--main-color-lite)"}}> No note has been added to this track yet —— click "create" to start one!</p>
+                    
+                    <p style={{opacity: isHoveringNote ? "100%" : "30%", transition: "all 0.1s ease"}}>
+                        <button onClick={() => {setEditing(true)}}>create</button>
+                    </p>    
+                </> : 
+                <>
+                <p style={{color: "var(--main-color-lite)"}}> No note has been added to this track. </p>
+                </>)
                 
-                <p style={{opacity: isHoveringNote ? "100%" : "30%",
-                                     transition: "all 0.1s ease"}}>
-                    <button onClick={() => {setEditing(true)}}>create</button>
-                                     </p>
-                
-                </>
-                ) :
+                ) 
+                :
 
                 <>
                     <textarea autoFocus

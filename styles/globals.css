@@ -35,6 +35,11 @@ h1 {
     font-size: 50px;
     line-height: 115%;
 }
+
+h2 {
+    margin: 0;
+    font-family: 'Zen Maru Gothic';
+}
 .playlist-search-bar{
     position: relative;
     width: 200px;
@@ -349,3 +354,51 @@ textarea:focus{
 .underline:hover{
     color: var(--main-color);
 }
+
+.modal-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: black;
+    display: flex;
+  }
+  
+  .modal {
+    margin: auto;
+    width: 90%;
+    max-width: 35rem;
+    background-color: white;
+    border-radius: 1.5rem;
+  }
+  
+  .modal-content {
+    padding: 1.5rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+
+  .backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: rgba(0,0,0,0.4);
+    display: flex;
+    transition: opacity 0.2s ease;
+ }
+
+ .wraplink{
+        white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+        white-space: -webkit-pre-wrap;          /* Chrome & Safari */ 
+        white-space: -pre-wrap;                 /* Opera 4-6 */
+        white-space: -o-pre-wrap;               /* Opera 7 */
+        white-space: pre-wrap;                  /* CSS3 */
+        word-wrap: break-word;                  /* Internet Explorer 5.5+ */
+        word-break: break-all;
+        white-space: normal;
+    }
