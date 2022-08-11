@@ -110,6 +110,18 @@ export default function PlaylistPage(prop: {playlistID:string}
                }
             return true
         }
+        
+        function getArtists(artistArray: Array<any>){
+            if (artistArray.length > 1){
+                let artistNames = []
+                for (let i = 0; i < artistArray.length; i++) {
+                    artistNames.push(artistArray[i]['name'])
+                }
+                return artistNames.join(", ")
+            } else {
+                return artistArray[0]['name']
+            }
+        }
 
         function postPlaylist(input_name:string){
             axios.post("/api/post", 
@@ -276,7 +288,7 @@ export default function PlaylistPage(prop: {playlistID:string}
                                 index={i + 1}
                                 title={item['track']['name']} 
                                 link={item['track']['external_urls']['spotify']}
-                                artist={item['track']['artists'][0]['name']} 
+                                artist={getArtists(item['track']['artists'])} 
                                 album={item['track']['album']['name']} 
                                 length={durationFormatter(item['track']['duration_ms'])}
                                 editable={true} 
