@@ -94,15 +94,17 @@ export default function Track(props: {
         <div className="track-note">
             {(!editing ?  ( props.note ?
                 <>
-                    <textarea disabled autoFocus
+                    {props.editable ?
+                        <>
+                        <textarea disabled autoFocus
                         className="viewing" 
                         value={props.note}
                         name="view-note"></textarea>
-                    {props.editable ?
-                        <><p style={{opacity: isHoveringNote ? "100%" : "30%",
+                    
+                        <p style={{opacity: isHoveringNote ? "100%" : "30%",
                                      transition: "all 0.1s ease"}}>
                             <button onClick={() => setEditing(true)}>edit</button>
-                        </p></> : <></>
+                        </p></> : <> <div style={{color:"rgba(0,0,0,0.5)"}}>{props.note}</div></>
                     }
                 
                 </>
