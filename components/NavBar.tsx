@@ -20,6 +20,10 @@ export default function NavBar(props: {
             <a href="/about">About</a>
         </div>
 
+        <div className="navlink">
+            <a href="/help">Help</a>
+        </div>
+
     </div>
 
 

@@ -16,7 +16,7 @@ export default function Index() {
         } else if (isValidUri(input)) {
             id = getIdFromUri(input)
         }
-        window.location.href= "/create/"+id
+        window.location.href= "/import/"+id
 
     }
 

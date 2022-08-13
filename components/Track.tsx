@@ -76,7 +76,7 @@ export default function Track(props: {
                     
                     <div className="song">
                         <div className="song-title"> 
-                            <a href={props.link} target="_blank"> 
+                            <a className="invisible-link" href={props.link} target="_blank"> 
                                 {props.title} </a>
                         </div> 
                         <div className="artist">{props.artist}</div> 
