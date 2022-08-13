@@ -14,7 +14,7 @@ export default function PublishModal(props: {
     // const [error, setError] = useState("")
 
     function replaceSpecialCharacters(str : string) {
-        const noSpecialStr = str.replace(/[^a-zA-Z \-]/g, "");
+        const noSpecialStr = str.replace(/[^a-zA-Z0-9 \-]/g, "");
         const spaceToDashStr = noSpecialStr.replace(/\s/g, "-");
         return spaceToDashStr
     }
