@@ -1,6 +1,7 @@
 import NavBar from "../components/NavBar";
 import { useState } from "react";
 import Accordion from "react-robust-accordion";
+import Head from "next/head";
 
 export default function About() {
     const [openWhy, setOpenWhy] = useState(false)
@@ -11,6 +12,10 @@ export default function About() {
     return (
 
         <>
+        <Head>
+            <title>liner notes: about</title>
+        </Head>
+
         <NavBar status="about this site"></NavBar>
         <div style={{padding: "10%"}}> 
         <div className="mobile-padding"></div>
@@ -189,15 +194,21 @@ export default function About() {
                         <ul>
                             <li>the paper traced through the history of the playlist——from the physical mix tape
                                 through the multimedia revolution (e.g. MIDI files, the mp3 format), through platforms like Winamp & iTunes
-                                to social streaming services today——showing the cultural transformations  </li>
+                                to social streaming services today——showing how changing technologies recontextualize & transform
+                                the way we experience and ascribe meaning to cultural artifacts like Music, playlists, songs, etc.  </li>
 
                                 <br/>
-                           
+
                             <li>This quote picked out <a href="https://www.jstor.org/stable/10.1525/j.ctv1xxx9f.7">from Jeremy Wade Morris</a> : 
                             <em>
                             “Winamp was one of the first players to realize that the disaggregation of music from its album actually opened the music commodity up for new forms of aggregation"
-                            </em></li>
+                            </em> woaahh ok yeah</li>
                             
+                            <br/>
+                            <li>He also interviews with people who like making playlists & connects them to interesting concepts:
+                                bricolage, subcultural capital, nostalgia, etc. Ultimately it's a fun
+                                read: esp when u get that feeling of recognition like wow lol i am IN social phenomena
+                                im totally a part of this</li>
                             <br/>
 
                             <li> if this piqued ur interest too maybe you can reach out to him to read it!</li>
@@ -223,7 +234,7 @@ export default function About() {
                         <br/>
 
 
-                    <li>a tweet i saw by <a href="">@kytalli</a> that soorrta gets at this: </li>
+                    <li>a tweet i saw by <a href="https://twitter.com/kytalli/status/1552116139399950338">@kytalli</a> that soorrta gets at this: </li>
 
                         <br/>
 
@@ -239,7 +250,7 @@ export default function About() {
 
                     <br/>
 
-                    <li>robin sloan: "<a href="https://www.robinsloan.com/notes/home-cooked-app/">an app can be a home cooked meal.</a>"" just 
+                    <li>robin sloan: "<a href="https://www.robinsloan.com/notes/home-cooked-app/">an app can be a home cooked meal.</a>" just 
                         hoping friends can use this app & feel the personal-ness of it.
                     </li>
 

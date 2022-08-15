@@ -1,6 +1,7 @@
 import NavBar from "../components/NavBar";
-import Accordion from "react-robust-accordion";
 import { useState } from "react";
+import Head from "next/head";
+
 
 
 
@@ -11,6 +12,10 @@ export default function Help() {
 
     return (
         <>
+        <Head>
+            <title>liner notes: help</title>
+        </Head>
+
         <NavBar status="need help?"></NavBar>
 
 
@@ -52,28 +57,8 @@ export default function Help() {
             </ol>
 
             <p>That's basically it! More features will come when I figure out how to add Spotify OAuth!
-                {/* but for more info on additional features, <a onClick={() => setOpenDetails(!openDetails)} style={{textDecoration: "underline"}}>click here!</a> */}
             </p>
-            {/* <div style={{boxSizing:"border-box", border: "black dashed 0.5px", borderRadius: "5px", paddingLeft: "20px"}}>
-            <Accordion openState={openDetails} setOpenState={(bool: boolean) => setOpenDetails(bool)}>
-            <p> You don't need to be signed in to use Liner Notes, 
-                and you don't need to be the owner of a playlist to add notes to it!
-                However, signing in with your Spotify account will let you do the following things: </p>
-                <ul>
-                    <li>edit pages that you've already published</li>
-                    <li>customize viewing & editing permissions for your pages</li>
-                    <li>lock your playlists from being annotated by other users</li>
-                </ul>
-            </Accordion>
-            </div> */}
-            
-        {/* <p>For a step-by-step walkthrough with an example playlist, <a onClick={() => setOpenWalkthrough(!openWalkthrough)} style={{textDecoration: "underline"}}>click here!</a></p>
-        <div style={{border: "black dashed 0.5px", borderRadius: "5px", paddingLeft: "20px"}}>
-        <Accordion openState={openWalkthrough} setOpenState={(bool: boolean) => setOpenWalkthrough(bool)}>
-            <p>Take this playlist as an example</p>
-        </Accordion>
-        </div> */}
-        
+
         </section>
         
         <section id="how-to-report" className="readable-content">
@@ -100,7 +85,7 @@ export default function Help() {
 
         <h2> How to find the URI / URL of your playlist:</h2>
        
-        <p>Finding the URL: Make sure that your link is in the format <mark className="wrap-if-mobile">https://open.spotify.com/playlist/XXXXXXXX</mark>.</p>
+        <p>Finding the URL: make sure that your link is in the format <mark className="wrap-if-mobile">https://open.spotify.com/playlist/XXXXXXXX</mark>.</p>
         <ul>
             <li> If you're using <strong>Spotify Web Player: </strong>
             <div style={{paddingLeft: "2em"}}>the URL is in the address bar of your browser. </div></li>
