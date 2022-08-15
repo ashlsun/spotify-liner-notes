@@ -12,7 +12,11 @@ export default function Help() {
     return (
         <>
         <NavBar status="need help?"></NavBar>
+
+
         <div style={{padding: "10%"}}> 
+        <div className="mobile-padding"></div>
+
         <h1>Help!</h1>
         <section id="how-to-use" className="readable-content">
         <br></br>
@@ -96,7 +100,7 @@ export default function Help() {
 
         <h2> How to find the URI / URL of your playlist:</h2>
        
-        <p>Finding the URL: make sure that your link is in the form <mark>https://open.spotify.com/playlist/XXXXXXXX</mark>.</p>
+        <p>Finding the URL: Make sure that your link is in the format <mark className="wrap-if-mobile">https://open.spotify.com/playlist/XXXXXXXX</mark>.</p>
         <ul>
             <li> If you're using <strong>Spotify Web Player: </strong>
             <div style={{paddingLeft: "2em"}}>the URL is in the address bar of your browser. </div></li>
@@ -108,10 +112,12 @@ export default function Help() {
             <br></br>
 
         </ul>
-       ...
-        <p>If that doesn't work, you can try finding the URI (<a href="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">Unique Resource Identifier</a>). On Spotify, all playlist URIs come in the form "<mark>spotify:playlist:XXXXXXXX</mark>"</p>
-        <p>On <strong>Web Player</strong> and <strong>Desktop</strong>, you get the URI by clicking the three dots, hovering over "Share" and "Copy link to playlist", and holding down the option/alt key before clicking. The text should change to "Copy Spotify URI".</p>
-        ...
+        <br></br>
+        <p>Finding the URI (<a href="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">Unique Resource Identifier</a>): this should come in the format <mark>spotify:playlist:XXXXXXXX</mark>.</p>
+        <ul>
+            <li>On <strong>Web Player</strong> and <strong>Desktop</strong>, click the three dots, hover over "Share" and "Copy link to playlist", and hold down the option/alt key before clicking. The text should change to "Copy Spotify URI".</li>
+        </ul>
+        <br></br>
         <p>If you still have problems importing your playlist, make sure that your input matches one of the formats highlighted above & check if your playlist is public. Note that a playlist doesn't have to be added to your profile to be public!</p>
         </section>
 

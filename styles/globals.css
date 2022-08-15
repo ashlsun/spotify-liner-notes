@@ -315,6 +315,7 @@ textarea:focus{
     align-items: flex-end;
 }
 .navlink {
+    text-decoration: inherit;
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -322,6 +323,20 @@ textarea:focus{
 @media screen and (max-width: 600px) {
     .addedAt {
         display: none;
+    }
+    .mobile-padding{
+        margin: 20%;
+    }
+
+    .wrap-if-mobile{
+        white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+        white-space: -webkit-pre-wrap;          /* Chrome & Safari */ 
+        white-space: -pre-wrap;                 /* Opera 4-6 */
+        white-space: -o-pre-wrap;               /* Opera 7 */
+        white-space: pre-wrap;                  /* CSS3 */
+        word-wrap: break-word;                  /* Internet Explorer 5.5+ */
+        word-break: break-all;
+        white-space: normal;
     }
 
     h1 {

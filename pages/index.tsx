@@ -16,7 +16,7 @@ export default function Index() {
         } else if (isValidUri(input)) {
             id = getIdFromUri(input)
         }
-        window.location.href= "/import/"+id
+        window.location.href= "/new/"+id
 
     }
 
@@ -48,7 +48,7 @@ export default function Index() {
         <>
         
         <Head>
-            <title>Liner Notes </title>
+            <title>liner notes</title>
         </Head>
 
         <NavBar status=""></NavBar>
@@ -69,7 +69,8 @@ export default function Index() {
                         {/* want to navigate to corresponding  */}
                     </div>
                 </div>
-                    
+         
+        
 
         </>
     );
