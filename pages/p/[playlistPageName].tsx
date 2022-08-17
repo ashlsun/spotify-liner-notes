@@ -3,25 +3,35 @@ import { useState, useEffect } from "react";
 import {durationFormatter, durationSum} from  "../../utils/utils";
 import Track from "../../components/Track";
 import NavBar from "../../components/NavBar";
-import PublishModal from "../../components/PublishModal";
 import Head from "next/head";
 import { TbSearch, TbUpload, TbDownload } from 'react-icons/tb';
 import { BsArrowsExpand, BsArrowsCollapse } from 'react-icons/bs'
 import { IconContext } from "react-icons";
+import {getSession} from "next-auth/react";
 
 export async function getServerSideProps(context: any){
-    const playlistPageName = context.params.playlistPageName;
-
-    return {
-        props: {
-            playlistPageName: playlistPageName
-        }
-    }
+        const playlistPageName = context.params.playlistPageName;
+        const session = await getSession(context);
+        
+        if (!session) return {props: {playlistPageName: playlistPageName}};
+        
+        return {props: {playlistPageName: playlistPageName, session: session}}
 }
 
-export default function PlaylistPage(prop: {playlistPageName:string}
+export default function PlaylistPage(props: 
+    {
+        playlistPageName:string
+        session : {
+            user : {
+                email: string,
+                name: string,
+                image: string,
+            }
+        }
+    }
+
     )  {
-        const playlistPageName = prop.playlistPageName
+        const playlistPageName = props.playlistPageName
         const [playlistObject, setPlaylistObject] = useState<any>(null)
         const [notesArray, setNotesArray] = useState([])
         const [isError, setIsError] = useState(false)
@@ -138,7 +148,8 @@ export default function PlaylistPage(prop: {playlistPageName:string}
             <Head>
                 <title>Liner Notes{playlistObject ? ": " + playlistObject['name'] : ""} </title>
             </Head>
-            <NavBar status={playlistObject ? '"' + playlistObject['name'] + '"': ""}></NavBar>
+            <NavBar status={playlistObject ? '"' + playlistObject['name'] + '"': ""}
+                    session={props.session}></NavBar>
             {isError ? 
                 <>
                     <div className="center"> 
