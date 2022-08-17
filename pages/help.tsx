@@ -75,24 +75,40 @@ export default function Help(props : {
         <br></br>
         <hr style={{borderTop: "dashed 0.5px;", borderBottom : "0px;"}}/>
         <h2>How does Spotify sign in work / what does it do?</h2>
+            <br></br>
+
+            <h3>How it works</h3>
             <p>
                 Spotify sign in works through <a href="https://en.wikipedia.org/wiki/OAuth">OAuth</a>,
-                which basically means that this website is outsourcing all the work (of 
-                creating / storing / logging-in user accounts) to Spotify. 
-            </p>
-            <p>
-                The purpose of user accounts is to *eventually* allow logged-in users 
-                the ability to edit playlists they've already published. The only data I foresee this 
-                webapp accessing is the <b>name</b>, <b>user id</b>, and <b>profile pic</b>.
+                which basically means that instead of having a separate login/account creation system,
+                this webapp asks Spotify for permission to access data like
+                your <b>user id</b>, <b>name</b>, <b>email</b>, and <b>profile pic</b>. These are the only fields it 
+                needs; it's not accessing any other data from your account!
             </p>
 
+            <br></br>
+
+            <h3>What it's for</h3>
+            <p>
+                The purpose of user accounts is to *eventually* allow logged-in users 
+                the ability to edit playlists they've already published.
+            </p>
+
+            <p>
+                If I ever end up expanding the features & needing more permissions, I'll 
+                communicate that with you directly! But that would be very far in the future, if it happens at all.
+            </p>
+
+            <br></br>
+
+            <h3>What it does</h3>
 
             <p>
                 Currently, signing in doesn't enable any extra features or do anything really (lol).
             </p>
 
             <p>
-                Feel free to ignore this while I work on making it functional!
+                Feel free to ignore it while I work on making it functional!
             </p>
         </section>
 
@@ -146,7 +162,7 @@ export default function Help(props : {
             <li>On <strong>Web Player</strong> and <strong>Desktop</strong>, click the three dots, hover over "Share" and "Copy link to playlist", and hold down the option/alt key before clicking. The text should change to "Copy Spotify URI".</li>
         </ul>
         <br></br>
-        <p>If you still have problems importing your playlist, make sure that your input matches one of the formats highlighted above & check if your playlist is public. Note that a playlist doesn't have to be added to your profile to be public!</p>
+        <p>If you still have problems importing your playlist, make sure that your input matches one of the formats highlighted above & check that your playlist is public. Note that a playlist doesn't have to be added to your profile to be public!</p>
         </section>
 
         <hr style={{borderTop: "dashed 0.5px;", borderBottom : "0px;"}}/>

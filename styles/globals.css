@@ -43,6 +43,10 @@ h2 {
     margin: 0;
     font-family: 'Zen Maru Gothic';
 }
+
+h3 {
+    font-family: 'Zen Maru Gothic';
+}
 .playlist-search-bar{
     position: relative;
     width: 200px;
@@ -315,7 +319,6 @@ textarea:focus{
     align-items: flex-end;
 }
 .navlink {
-    vertical-align: top;
     text-decoration: inherit;
     padding-left: 10px;
     padding-right: 10px;
