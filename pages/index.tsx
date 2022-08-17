@@ -2,8 +2,18 @@ import { useState } from "react";
 import Head from "next/head";
 import axios from "axios";
 import NavBar from "../components/NavBar";
+import { GetServerSidePropsContext } from "next";
+import {getSession} from "next-auth/react";
 
-export default function Index() {
+export default function Index(props : {
+    session : {
+        user : {
+            email: string,
+            name: string,
+            image: string,
+        }
+    }
+}) {
     const [playlistId, setPlaylistId] = useState("")
     const [validInput, setValidInput] = useState(true)
     const [newPostBody, setNewPostBody] = useState("");
@@ -51,7 +61,7 @@ export default function Index() {
             <title>liner notes</title>
         </Head>
 
-        <NavBar status=""></NavBar>
+        <NavBar status="" session={props.session}></NavBar>
             {/* <input type="text" value={newPostBody} onChange={e => setNewPostBody(e.target.value)} />
             <button onClick={onAdd}>Add</button> */}
 
@@ -70,8 +80,16 @@ export default function Index() {
                     </div>
                 </div>
          
-        
+            
 
         </>
     );
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext){
+    const session = await getSession(context);
+
+    if (!session) return {props: {}};
+    
+    return {props: {session: session}}
 }

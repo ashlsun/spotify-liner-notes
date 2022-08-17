@@ -315,6 +315,7 @@ textarea:focus{
     align-items: flex-end;
 }
 .navlink {
+    vertical-align: top;
     text-decoration: inherit;
     padding-left: 10px;
     padding-right: 10px;

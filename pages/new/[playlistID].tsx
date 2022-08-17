@@ -8,20 +8,34 @@ import Head from "next/head";
 import { TbSearch, TbUpload, TbDownload } from 'react-icons/tb';
 import { BsArrowsExpand, BsArrowsCollapse } from 'react-icons/bs'
 import { IconContext } from "react-icons";
+import {getSession} from "next-auth/react";
+import { GetServerSidePropsContext } from "next";
+
+
 
 export async function getServerSideProps(context: any){
     const playlistID = context.params.playlistID;
+    const session = await getSession(context);
+    
+    if (!session) return {props: {playlistID: playlistID}};
+    
+    return {props: {playlistID: playlistID, session: session}}
 
-    return {
-        props: {
-            playlistID: playlistID
-        }
-    }
 }
 
-export default function PlaylistPage(prop: {playlistID:string}
+export default function PlaylistPage(props: 
+    {
+        playlistID:string
+        session : {
+            user : {
+                email: string,
+                name: string,
+                image: string,
+            }
+        }
+    }
     )  {
-        const playlistID = prop.playlistID
+        const playlistID = props.playlistID
 
         const [playlistObject, setPlaylistObject] = useState<any>(null);
         const [searchBarVisible, setSearchBarVisible] = useState(false);
@@ -162,7 +176,9 @@ export default function PlaylistPage(prop: {playlistID:string}
             <Head>
                 <title>liner notes{playlistObject ? ": " + playlistObject['name'] : ""} </title>
             </Head>
-            <NavBar status={playlistObject ? 'importing "' + playlistObject['name'] + '"': ""}></NavBar>
+            <NavBar 
+                status={playlistObject ? 'importing "' + playlistObject['name'] + '"': ""}
+                session={props.session}></NavBar>
             {isError ? 
                 <>
                     <div className="center"> 

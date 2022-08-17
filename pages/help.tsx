@@ -1,11 +1,21 @@
 import NavBar from "../components/NavBar";
 import { useState } from "react";
 import Head from "next/head";
+import { GetServerSidePropsContext } from "next";
+import {getSession} from "next-auth/react";
 
 
 
 
-export default function Help() {
+export default function Help(props : {
+    session : {
+        user : {
+            email: string,
+            name: string,
+            image: string,
+        }
+    }
+}) {
     const [openDetails, setOpenDetails] = useState(false)
     const [openWalkthrough, setOpenWalkthrough] = useState(false)
 
@@ -16,7 +26,7 @@ export default function Help() {
             <title>liner notes: help</title>
         </Head>
 
-        <NavBar status="need help?"></NavBar>
+        <NavBar status="need help?" session={props.session}></NavBar>
 
 
         <div style={{padding: "10%"}}> 
@@ -56,25 +66,58 @@ export default function Help() {
                 </div>
             </ol>
 
-            <p>That's basically it! More features will come when I figure out how to add Spotify OAuth!
+            <p>That's basically it! More features will come when I figure out how to fully integrate user accounts!
             </p>
 
         </section>
         
+        <section id="spotify" className="readable-content">
+        <br></br>
+        <hr style={{borderTop: "dashed 0.5px;", borderBottom : "0px;"}}/>
+        <h2>How does Spotify sign in work / what does it do?</h2>
+            <p>
+                Spotify sign in works through <a href="https://en.wikipedia.org/wiki/OAuth">OAuth</a>,
+                which basically means that this website is outsourcing all the work (of 
+                creating / storing / logging-in user accounts) to Spotify. 
+            </p>
+            <p>
+                The purpose of user accounts is to *eventually* allow logged-in users 
+                the ability to edit playlists they've already published. The only data I foresee this 
+                webapp accessing is the <b>name</b>, <b>user id</b>, and <b>profile pic</b>.
+            </p>
+
+
+            <p>
+                Currently, signing in doesn't enable any extra features or do anything really (lol).
+            </p>
+
+            <p>
+                Feel free to ignore this while I work on making it functional!
+            </p>
+        </section>
+
+
         <section id="how-to-report" className="readable-content">
         <br></br>
         <hr style={{borderTop: "dashed 0.5px;", borderBottom : "0px;"}}/>
 
         <h2>How to report bugs:</h2>
-            <p> You found a bug? Amazing!!! Here's how you can help me: </p>
-            <p>
-                First, check out <a href="https://docs.google.com/document/d/1WUgI0JgHwenq7gc27hpT-u0-B4gosUstavceNOrCX_A/edit?usp=sharing">this list of known bugs</a> to see if I've already made note of it.
-            </p>
+            <p> You found a bug? Amazing!!! </p>
+            <ol style={{fontSize: "normal"}}>
+                <li>
+                    First, check out <a href="https://docs.google.com/document/d/1WUgI0JgHwenq7gc27hpT-u0-B4gosUstavceNOrCX_A/edit?usp=sharing">this list of known bugs</a>.
+                </li>
+
+                <li>
+                    If it's not in the list yet, 
+                    please let me know <a href="https://forms.gle/zMCqtFevazfED4nQ7">here</a>. 
+                </li>
+            </ol>
+
+            <p>I really appreciate it! :)</p>
             
-            <p>
-                If it's not in the list yet, 
-                please let me know <a href="https://forms.gle/zMCqtFevazfED4nQ7">here</a>. I really appreciate it! :)
-            </p>
+            
+            
 
         </section>
 
@@ -115,4 +158,12 @@ export default function Help() {
         
         </>
     )
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext){
+    const session = await getSession(context);
+
+    if (!session) return {props: {}};
+    
+    return {props: {session: session}}
 }

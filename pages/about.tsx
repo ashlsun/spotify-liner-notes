@@ -2,21 +2,31 @@ import NavBar from "../components/NavBar";
 import { useState } from "react";
 import Accordion from "react-robust-accordion";
 import Head from "next/head";
+import { GetServerSidePropsContext } from "next";
+import {getSession} from "next-auth/react";
 
-export default function About() {
+
+export default function About(props : {
+    session : {
+        user : {
+            email: string,
+            name: string,
+            image: string,
+        }
+    }
+}) {
     const [openWhy, setOpenWhy] = useState(false)
     const [openMisc, setOpenMisc] = useState(false)
 
 
 
     return (
-
         <>
         <Head>
             <title>liner notes: about</title>
         </Head>
 
-        <NavBar status="about this site"></NavBar>
+        <NavBar status="about this site" session={props.session}></NavBar>
         <div style={{padding: "10%"}}> 
         <div className="mobile-padding"></div>
 
@@ -28,7 +38,7 @@ export default function About() {
         <div className="readable-content">
             <h2>What is this site?</h2>
             <p> It's a webapp that lets you add little notes and comments to your playlists!
-                The name takes inspiration from the old practice of artists including '<a href="https://en.wikipedia.org/wiki/Liner_notes">liner notes</a>' 
+                The name is inspired by the old practice of artists including '<a href="https://en.wikipedia.org/wiki/Liner_notes">liner notes</a>' 
                 in the sleeves of records they released.
             </p>
 
@@ -75,7 +85,7 @@ export default function About() {
 
                 <em>Hmmmm</em> I still don't know how to word this well 
                 but I just think playlists are an interesting medium!
-                They can be especially ambiguous bc songs have so many
+                They can get pretty ambiguous bc songs have so many
                 aspects to them (genre, subject, personality, sound), but in a playlist a song is either included 
                 or not... a playlist is an artifact that collapses everything else!
                 There is no other axis 
@@ -277,7 +287,7 @@ export default function About() {
                                 <br/>
 
                                 i just think it's a fun (and ACCURATE) framing of what playlists are to me,
-                                as i definitely tend to treat them like journals / bookmarks. 
+                                as i definitely tend to treat them like journals or bookmarks into the past. 
                                 and i know im not the only one who sees the 
                                 therapeutic / cathartic qualities of putting together a good playlist!
                             </li>
@@ -293,4 +303,12 @@ export default function About() {
         </div>
         </>
     )
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext){
+    const session = await getSession(context);
+
+    if (!session) return {props: {}};
+    
+    return {props: {session: session}}
 }
