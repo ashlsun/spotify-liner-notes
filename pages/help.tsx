@@ -107,7 +107,7 @@ export default function Help(props : {
                 <li>
                     First, check out <a href="https://docs.google.com/document/d/1WUgI0JgHwenq7gc27hpT-u0-B4gosUstavceNOrCX_A/edit?usp=sharing">this list of known bugs</a>.
                 </li>
-
+                    <br></br>
                 <li>
                     If it's not in the list yet, 
                     please let me know <a href="https://forms.gle/zMCqtFevazfED4nQ7">here</a>. 

@@ -19,7 +19,6 @@ export default function About(props : {
     const [openMisc, setOpenMisc] = useState(false)
 
 
-
     return (
         <>
         <Head>
@@ -146,7 +145,7 @@ export default function About(props : {
                 <br></br>
 
                 <li>
-                    <b>Xindi</b> and <b>Sayd</b>,
+                    <b>Xindi</b> and <b>Sayd</b>, for
                     helping me debug weird React things! 
                     
                 </li>
@@ -154,7 +153,7 @@ export default function About(props : {
 
             <p> & to everyone whose given me the space to talk to about this
                 thing I've been working on <span>
-                (like <b>Brendan</b>, <b>Aleah</b>, <b>Chris</b>, <b>Krystal</b>, <b>Will</b>
+                (like <b>Brendan</b>, <b>Aleah</b>, <b>Chris</b>, <b>Ezra</b>, <b>Krystal</b>
                 , <b>Nicole</b>, <b>Jacinda</b> to name a few, PLUS 
                 anyone who's reading this rn )
                 </span> ——I APPRECIATE U!!</p>
