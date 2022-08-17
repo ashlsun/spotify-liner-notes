@@ -47,19 +47,37 @@ export default function NavBar(props: {
         </div>
 
         {props.session ? 
-        <>
-            <div className="navlink">
-                <img 
-                    onClick={() => signOut()}
-                    style={{verticalAlign: "sub", 
-                            height: 20, 
-                            border:"dashed 1px black", 
-                            borderRadius: 100,
-                            cursor: "pointer"}}
-                    src={props.session.user.image}></img>
+            (props.session.user.image ? 
+                <>
+                    <div className="navlink">
+                        <img 
+                            onClick={() => signOut()}
+                            style={{verticalAlign: "sub", 
+                                    height: 20, 
+                                    border:"dashed 1px black", 
+                                    borderRadius: 100,
+                                    cursor: "pointer"}}
+                            src={props.session.user.image}></img>
 
-            </div>
-        </>
+                    </div>
+                </>
+                :
+                <>
+                    <div className="navlink">
+                        <div 
+                            style={{textAlign: "center", verticalAlign: "sub", height: 20, width: 20, 
+                                border:"dashed 1px grey", 
+                                borderRadius: 100,
+                                cursor: "pointer"}}
+                            onClick={()=> {signOut()}} > 
+
+                            <IconContext.Provider value={{ style: { verticalAlign: 'sub'} }}>
+                                <AiOutlineSmile/>
+                            </IconContext.Provider> 
+                            
+                        </div>
+                    </div>
+                </>)
         :
         <>
         <div className="navlink">
