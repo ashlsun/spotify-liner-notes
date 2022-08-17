@@ -49,7 +49,12 @@ export default function NavBar(props: {
             <div className="navlink">
                 <img 
                     onClick={() => signOut()}
-                    style={{verticalAlign: "sub", height: 20, border:"dashed 1px black", borderRadius: 100}}src={props.session.user.image}></img>
+                    style={{verticalAlign: "sub", 
+                            height: 20, 
+                            border:"dashed 1px black", 
+                            borderRadius: 100,
+                            cursor: "pointer"}}
+                    src={props.session.user.image}></img>
 
             </div>
         </>
@@ -59,7 +64,8 @@ export default function NavBar(props: {
             <div 
                 style={{textAlign: "center", verticalAlign: "sub", height: 20, width: 20, 
                     border:"dashed 1px black", 
-                    borderRadius: 100}}
+                    borderRadius: 100,
+                    cursor: "pointer"}}
                 onClick={()=> {navigateToSignIn()}} > 
                 ?
             </div>
