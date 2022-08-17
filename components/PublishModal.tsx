@@ -37,7 +37,10 @@ export default function PublishModal(props: {
             <br></br>
             <br></br>
             <IconContext.Provider value={{ style: { verticalAlign: 'middle' } }}>
-                <TbLink/></IconContext.Provider> <a className="wraplink" href={"../p/" + replaceSpecialCharacters(url)}>liner-notes.vercel.app/p/{replaceSpecialCharacters(url)}</a>
+                <TbLink/></IconContext.Provider> <a 
+                  className="wraplink" 
+                  href={"../p/" + replaceSpecialCharacters(url)}
+                  target="_blank">liner-notes.vercel.app/p/{replaceSpecialCharacters(url)}</a>
             <br></br>
             <br></br>
             <div style={{"color": "rgba(0,0,0,0.4)"}}>~~~~~~~~~~</div> 

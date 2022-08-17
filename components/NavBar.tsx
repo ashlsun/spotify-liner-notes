@@ -1,5 +1,7 @@
 import { useState } from "react";
 import {signOut} from "next-auth/react";
+import {AiOutlineSmile} from "react-icons/ai"
+import { IconContext } from "react-icons";
 
 export default function NavBar(props: {
     status: string 
@@ -63,11 +65,15 @@ export default function NavBar(props: {
         <div className="navlink">
             <div 
                 style={{textAlign: "center", verticalAlign: "sub", height: 20, width: 20, 
-                    border:"dashed 1px black", 
+                    border:"dashed 1px grey", 
                     borderRadius: 100,
                     cursor: "pointer"}}
                 onClick={()=> {navigateToSignIn()}} > 
-                ?
+
+                <IconContext.Provider value={{ style: { verticalAlign: 'sub' , color: "lightgrey"} }}>
+                    <AiOutlineSmile/>
+                </IconContext.Provider> 
+                
             </div>
         </div>
         </>
