@@ -18,7 +18,8 @@ export default function Profile(props : {
 
     const [viewPublished, setViewPublished] = useState(true)
     const [posts, setPosts] = useState<{body: string, _id: string, name: string, notes:string[], email: string}[]> ([]);
-    const posts2 = [{_id: "1", name: "friends songs"}, {_id: "2", name: "dongs"},{_id: "3", name: "friends"},]
+    const [loadingPublished, setLoadingPublished] = useState(false)
+
     function onRequest() {
         axios.get("api/myPlaylists").then(res=> {
             console.log("yey", res.data)
@@ -27,10 +28,8 @@ export default function Profile(props : {
     }
 
     useEffect(()=> {
-        console.log({posts2})
-        console.log("Hey")
-        console.log({posts})
         onRequest()
+        setLoadingPublished(true)
     }, []);
 
     return (
@@ -69,13 +68,24 @@ export default function Profile(props : {
                     <b>drafts</b>
                 </div>
             </div>
+            
+            
 
             <div style={{display: viewPublished ? "" : "none"}}>
-                {posts.map(d => (
-                    <>
-                    <PlaylistPreview key={d._id} name={d.name} body={d.body}/>
-                    </>
-                ))}
+                {loadingPublished ? 
+                    posts.map(d => (
+                        <>
+                        <PlaylistPreview key={d._id} name={d.name} body={d.body}/>
+                        </>
+                    ))
+                :
+                <>
+                <br></br>
+                <div style={{color: "grey"}}>Loading your playlists...</div>
+                </>
+                }
+                
+                
 
             </div>
 
