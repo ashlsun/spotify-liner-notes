@@ -168,7 +168,7 @@ export default function PlaylistPage(props:
                         <div id="playlist-info">
                             <p>{playlistObject['collaborative'] ? "COLLABORATIVE" : "PUBLIC"} PLAYLIST</p>
                             <h1>
-                                <a href={playlistObject['external_urls']['spotify']} target="_blank">
+                                <a className="invisible-link" href={playlistObject['external_urls']['spotify']} target="_blank">
                                     {playlistObject['name']}
                                 </a>
                             </h1>

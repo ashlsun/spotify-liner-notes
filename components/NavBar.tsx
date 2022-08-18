@@ -22,6 +22,10 @@ export default function NavBar(props: {
         window.location.href= "/signin"
     }
 
+    function navigateToProfile(){
+        window.location.href= "/profile"
+    }
+
     return (
     <>
     <div className="navbar" style={{verticalAlign: "sub"}}>
@@ -51,7 +55,7 @@ export default function NavBar(props: {
                 <>
                     <div className="navlink">
                         <img 
-                            onClick={() => signOut()}
+                            onClick={()=> {navigateToProfile()}}
                             style={{verticalAlign: "sub", 
                                     height: 20, 
                                     border:"dashed 1px black", 
@@ -69,7 +73,7 @@ export default function NavBar(props: {
                                 border:"dashed 1px grey", 
                                 borderRadius: 100,
                                 cursor: "pointer"}}
-                            onClick={()=> {signOut()}} > 
+                            onClick={()=> {navigateToProfile()}} > 
 
                             <IconContext.Provider value={{ style: { verticalAlign: 'sub'} }}>
                                 <AiOutlineSmile/>

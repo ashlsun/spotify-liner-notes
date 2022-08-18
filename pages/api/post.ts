@@ -23,7 +23,7 @@ export default async function handler(req: NextApiRequest , res : NextApiRespons
                 if (playlistExists) {
                     return res.status(500).send("Page name already in use.")
                 }
-                await PostModel.create({body: req.body.body, name: req.body.name, notes: req.body.notes});
+                await PostModel.create({body: req.body.body, name: req.body.name, notes: req.body.notes, email: req.body.email ? req.body.email : null  });
                 console.log("after create postmodel")
     
                 return res.status(200).send("Success");

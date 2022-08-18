@@ -141,7 +141,8 @@ export default function PlaylistPage(props:
             axios.post("/api/post", 
                     {name: input_name, 
                     body: JSON.stringify(playlistObject),
-                    notes: notesArray}
+                    notes: notesArray,
+                    email: props.session ? props.session.user.email : null}
                 )
                 .then(()=> {
                     setPublishSuccess("Successfully published playlist!")

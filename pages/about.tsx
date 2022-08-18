@@ -237,7 +237,7 @@ export default function About(props : {
                     <li>half-formed thought but although this is a simple webapp, i found the 
                         process of learning how to create one super empowering! bc i think format is magic. 
                     
-                        and software is a way of defining formats & inviting others into using them.
+                        and software is a way of defining formats & inviting others into them.
                     </li>
 
                         <br/>
@@ -259,8 +259,8 @@ export default function About(props : {
 
                     <br/>
 
-                    <li>robin sloan: "<a href="https://www.robinsloan.com/notes/home-cooked-app/">an app can be a home cooked meal.</a>" just 
-                        hoping friends can use this app & feel the personal-ness of it.
+                    <li>robin sloan: "<a href="https://www.robinsloan.com/notes/home-cooked-app/">an app can be a home cooked meal.</a>" 
+                        just hoping that when my friends use this app, they can feel the personal-ness of it！
                     </li>
 
                     <br/>
