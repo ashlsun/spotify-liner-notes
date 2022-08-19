@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import {durationFormatter, durationSum} from  "../utils/utils";
 import PlaylistHeader from "./PlaylistHeader";
-import axios from "axios";
-import TrackList from "./Tracklist";
+import TrackList from "./TrackList";
 
 export default function PlaylistPage(props: {
     playlistObject : any, // TODO : fix type
