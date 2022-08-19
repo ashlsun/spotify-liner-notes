@@ -30,7 +30,8 @@ export default function NavBar(props: {
     <>
     <div className="navbar" style={{verticalAlign: "sub"}}>
         <div style={{fontSize: "large"}}>
-            <strong>liner notes</strong>
+            <strong className="narrow">ln</strong>
+            <strong className="wide">liner notes</strong>
         </div>
         <div style={{color: "rgba(0,0,0,0.5",
                      fontSize: "large"}}>
