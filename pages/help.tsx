@@ -71,48 +71,6 @@ export default function Help(props : {
 
         </section>
         
-        <section id="spotify" className="readable-content">
-        <br></br>
-        <hr style={{borderTop: "dashed 0.5px;", borderBottom : "0px;"}}/>
-        <h2>How does Spotify sign in work / what does it do?</h2>
-            <br></br>
-
-            <h3>How it works</h3>
-            <p>
-                Spotify sign in works through <a href="https://en.wikipedia.org/wiki/OAuth">OAuth</a>,
-                which basically means that instead of having a separate login/account creation system,
-                this webapp asks Spotify for permission to access data like
-                your <b>user id</b>, <b>name</b>, <b>email</b>, and <b>profile pic</b>. These are the only fields it 
-                needs; it's not accessing any other data from your account!
-            </p>
-
-            <br></br>
-
-            <h3>What it's for</h3>
-            <p>
-                The purpose of user accounts is to *eventually* allow logged-in users 
-                the ability to edit playlists they've already published.
-            </p>
-
-            <p>
-                If I ever end up expanding the features & needing more permissions, I'll 
-                communicate that with you directly! But that would be very far in the future, if it happens at all.
-            </p>
-
-            <br></br>
-
-            <h3>What it does</h3>
-
-            <p>
-                Currently, signing in doesn't enable any extra features or do anything really (lol).
-            </p>
-
-            <p>
-                Feel free to ignore it while I work on making it functional!
-            </p>
-        </section>
-
-
         <section id="how-to-report" className="readable-content">
         <br></br>
         <hr style={{borderTop: "dashed 0.5px;", borderBottom : "0px;"}}/>
@@ -134,6 +92,35 @@ export default function Help(props : {
             
             
             
+
+        </section>
+
+
+        <section id="spotify" className="readable-content">
+        <br></br>
+        <hr style={{borderTop: "dashed 0.5px;", borderBottom : "0px;"}}/>
+        <h2>How does Spotify sign in work / what does it do?</h2>
+            <br></br>
+
+            <h3>How it works</h3>
+            <p>
+                Spotify sign in works through <a href="https://en.wikipedia.org/wiki/OAuth">OAuth</a>,
+                meaning that instead of having a separate login system,
+                this webapp asks Spotify for permission to access data like
+                your <b>user id</b>, <b>name</b>, <b>email</b>, and <b>profile pic</b>. These are the only fields it 
+                needs; it's not accessing any other data from your account!
+            </p>
+
+            <br></br>
+
+            <h3>What it's for</h3>
+            <p>
+                Signed-in users can view, edit, and delete the playlists
+                they've published on this site. They can also set custom viewing & editing permissions 
+                for others, so you can, for example, collaboratively comment on a playlist
+                or make a playlist visible for only certain users.
+            </p>
+
 
         </section>
 

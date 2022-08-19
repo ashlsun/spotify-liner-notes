@@ -58,6 +58,9 @@ h3 {
 }
 
 @media screen and (min-width: 600px) {
+    .narrow {
+        display: none;
+    }
     #page-header{
         align-items: center;
         padding: 50px;
@@ -325,6 +328,10 @@ textarea:focus{
 }
 
 @media screen and (max-width: 600px) {
+    .wide {
+        display: none;
+    }
+
     .addedAt {
         display: none;
     }
@@ -432,3 +439,30 @@ textarea:focus{
     max-width: 700px;
     padding-bottom: 20px;
 }
+
+.playlist-preview{
+    padding: 20px;
+    border: dashed 1px grey;
+    border-radius: 5px;
+    margin-top: 20px;
+    display: flex;
+    transition: background-color 0.3s;
+}
+
+.playlist-preview:hover{
+    background-color: rgba(25, 25, 25,0.07);
+}
+
+.vertical-line {
+    position: relative;
+    border-left: dashed 1px black;
+    margin-left: 20px;
+    width: 20px;
+    height: 500px;
+}
+
+/* .playlist-preview-button-section{
+    margin-right: 10px;
+    margin-left: auto;
+    align-items: flex-end;
+} */
