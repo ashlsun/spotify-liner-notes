@@ -21,6 +21,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             // ]);
 
             return res.status(200).json({posts: posts});
+        } else if (req.method === "DELETE") {
+            if (!req.body.id) return res.status(400).send("Missing post ID")
+
+            await mongoose.connect(process.env.MONGODB_URL as string)
+            await PostModel.deleteOne({_id: req.body.id})
+
+            return res.status(200).send("Success");
         } else {
             return res.status(405).send("Method not allowed");
         }

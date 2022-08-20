@@ -20,12 +20,37 @@ export default function Profile(props : {
     const [posts, setPosts] = useState<{body: string, _id: string, name: string, notes:string[], email: string}[]> ([]);
     const [loadingPublished, setLoadingPublished] = useState(false)
     const [viewShared, setViewShared] = useState(true)
+    const [selected, setSelected] = useState<boolean[]>([])
 
+
+
+    function selectByIndex(val: boolean, i: number) {
+        const selectedArray = new Array(posts.length).fill(false);
+        selectedArray[i] = val;
+        setSelected(selectedArray)
+    }
+
+    function checkAnySelected(){
+        for (let i = 0; i < selected.length ; i++){
+            if (selected[i]){
+                return true
+            }
+        }
+        return false
+    }
+
+    function onDelete(id: string){
+        axios.delete("api/myPlaylists", {data: {id: id}}).then(() => {
+            onRequest();
+        }).catch(e => console.log(e))
+    }
 
     function onRequest() {
         axios.get("api/myPlaylists").then(res=> {
             console.log("yey", res.data)
             setPosts(res.data.posts)
+            const selectedArray = new Array(res.data.posts.length).fill(false);
+            setSelected(selectedArray)
             setLoadingPublished(true)
         }).catch(e => console.log(e))
     }
@@ -77,22 +102,41 @@ export default function Profile(props : {
             
             
             <div style={{display: viewPublished ? "" : "none"}}>
-                {/* <div style={{display: "flex"}}>  */}
+                <div style={{display: "flex"}}> 
                     
                     {loadingPublished ? 
                         <>
                             <div className="playlist-preview-list">
-                                {posts.map(d => (
+                                {posts.map((d ,i: number)=> (
                                     <>
-                                    <PlaylistSummaryCard key={d._id} name={d.name} body={d.body}/>
+                                    <PlaylistSummaryCard 
+                                        key={d._id} 
+                                        name={d.name} 
+                                        body={d.body}
+                                        thisSelected={selected[i]}
+                                        setThisSelected={() => selectByIndex(!selected[i], i)}
+                                        deleteRequest={()=>onDelete(d._id)}
+                                    />
                                     </>
                                 ))}
                             </div>
                             
-                            {/* <div className="vertical-line"></div> 
-                            <div className="playlist-preview-page">
-                                Preview Here
-                            </div> */}
+                            {
+                                checkAnySelected() ? 
+
+                                <>
+                                <div className="vertical-line"></div> 
+                                <div className="playlist-preview-page">
+                                    Preview feature coming soon!
+                                </div>
+                                </>
+                                
+                                :
+                                <>
+                                </>
+                            }
+
+                            
                         </>
                             
                         :
@@ -102,7 +146,7 @@ export default function Profile(props : {
                         </>
                         }
 
-                {/* </div> */}
+                </div>
                 
                 
                 

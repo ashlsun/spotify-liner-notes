@@ -461,6 +461,10 @@ textarea:focus{
     height: 500px;
 }
 
+.playlist-preview-page {
+    width: 300px;
+}
+
 /* .playlist-preview-button-section{
     margin-right: 10px;
     margin-left: auto;

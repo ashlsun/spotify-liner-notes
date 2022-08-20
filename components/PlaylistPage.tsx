@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import {durationFormatter, durationSum} from  "../utils/utils";
 import PlaylistHeader from "./PlaylistHeader";
+import PublishModal from "./PublishModal";
 import TrackList from "./TrackList";
 
 export default function PlaylistPage(props: {
