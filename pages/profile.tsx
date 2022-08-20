@@ -127,6 +127,8 @@ export default function Profile(props : {
                                 <>
                                 <div className="vertical-line"></div> 
                                 <div className="playlist-preview-page">
+                                    <br/>
+                                    <br/>
                                     Preview feature coming soon!
                                 </div>
                                 </>
@@ -142,6 +144,8 @@ export default function Profile(props : {
                         :
                         <>
                         <br></br>
+                        <br/>
+                        <br/>
                         <div style={{color: "grey"}}>Loading your playlists...</div>
                         </>
                         }
@@ -182,7 +186,19 @@ export default function Profile(props : {
                     <b>Shared with everyone</b>
                 </div>
             </div>
+
+
+            <br/>
+            <br/>
+            <div style={{color: "grey"}}>Sharing feature coming soon!</div>
+            <br/>                    
+            <br/>
+            <br/>
+            <br/>
+
         </div>
+
+
 
         </>
     );
