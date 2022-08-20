@@ -1,4 +1,5 @@
 import { AnyTxtRecord } from "dns"
+import { MouseEvent } from "react"
 
 export default function PlaylistSummaryCard(props: {
     name : string,
@@ -10,18 +11,26 @@ export default function PlaylistSummaryCard(props: {
 
     const playlistObj = JSON.parse(props.body)
     
-    function deleteCheck() {
+    function editPlaceholder(e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) {
+        alert("sorry edit is really janky right now so i am disabling it until it is better")
+        e.stopPropagation()
+    }
+
+    function deleteCheck(e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) {
+
         const warning = 'Delete "' + playlistObj.name + '"? This action cannot be undone!'
         if (confirm(warning)){
             props.deleteRequest()
         } else {
             // do nothing
         }
+        e.stopPropagation()
     }
 
-    function copyLink() {
+    function copyLink(e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) {
         navigator.clipboard.writeText("https://liner-notes.vercel.app/p/" + props.name)
         alert('Copied the link to "' + playlistObj.name + '" to your clipboard!');
+        e.stopPropagation()
     }
 
     return (
@@ -47,19 +56,19 @@ export default function PlaylistSummaryCard(props: {
                 
                 <div className="playlist-preview-button-section">
                     <button 
-                        onClick={()=>copyLink()}
+                        onClick={(e)=>copyLink(e)}
                         style={props.thisSelected ? {color: "black", borderColor: "black"} : {}}>
                             share
                     </button>
 
                     <button 
-                        onClick={()=>{}}
+                        onClick={(e)=>{editPlaceholder(e)}}
                         style={props.thisSelected ? {color: "black", borderColor: "black"} : {}}>
                             edit
                     </button>
 
                     <button 
-                        onClick={()=>deleteCheck()}
+                        onClick={(e)=>deleteCheck(e)}
                         style={props.thisSelected ? {color: "black", borderColor: "black"} : {}}>
                             delete
                     </button>

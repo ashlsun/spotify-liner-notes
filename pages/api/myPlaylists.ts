@@ -1,13 +1,16 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import mongoose from "mongoose";
 import { PostModel } from "../../models/post";
+import { getSession } from "next-auth/react";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
         if (req.method === "GET"){
+            const session = await getSession({req})
+
             await mongoose.connect(process.env.MONGODB_URL as string);
 
-            const posts = await PostModel.find({ email : "janniesun00@gmail.com"})
+            const posts = await PostModel.find({ email : session?.user?.email})
             // const posts = await PostModel.aggregate([
             //     {
             //         $lookup: {
@@ -22,7 +25,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
             return res.status(200).json({posts: posts});
         } else if (req.method === "DELETE") {
+            
             if (!req.body.id) return res.status(400).send("Missing post ID")
+            
+            const session = await getSession({req});
+            const email = await PostModel.findById(req.body.id, "email")
+            if (!session || !email || email != session?.user?.email) {
+                return res.status(403).send("Not the owner of the playlist")
+            } 
 
             await mongoose.connect(process.env.MONGODB_URL as string)
             await PostModel.deleteOne({_id: req.body.id})
