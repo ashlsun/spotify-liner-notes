@@ -117,8 +117,8 @@ export default function Help(props : {
             <p>
                 Signed-in users can view, edit, and delete the playlists
                 they've published on this site. They can also set custom viewing & editing permissions 
-                for others, so you can, for example, collaboratively comment on a playlist
-                or make a playlist visible for only certain users.
+                for others, so you could, for example: collaboratively comment on a playlist
+                or make a playlist page visible for only certain users.
             </p>
 
 

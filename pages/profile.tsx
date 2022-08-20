@@ -4,7 +4,7 @@ import axios from "axios";
 import NavBar from "../components/NavBar";
 import { GetServerSidePropsContext } from "next";
 import {getSession, signOut} from "next-auth/react";
-import PlaylistPreview from "../components/PlaylistPreview";
+import PlaylistSummaryCard from "../components/PlaylistSummaryCard";
 
 export default function Profile(props : {
     session : {
@@ -84,7 +84,7 @@ export default function Profile(props : {
                             <div className="playlist-preview-list">
                                 {posts.map(d => (
                                     <>
-                                    <PlaylistPreview key={d._id} name={d.name} body={d.body}/>
+                                    <PlaylistSummaryCard key={d._id} name={d.name} body={d.body}/>
                                     </>
                                 ))}
                             </div>
