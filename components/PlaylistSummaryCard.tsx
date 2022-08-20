@@ -1,4 +1,4 @@
-export default function PlaylistPreview(props: {
+export default function PlaylistSummaryCard(props: {
     name : string
     body : string
 }){
