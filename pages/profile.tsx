@@ -5,6 +5,8 @@ import NavBar from "../components/NavBar";
 import { GetServerSidePropsContext } from "next";
 import {getSession, signOut} from "next-auth/react";
 import PlaylistSummaryCard from "../components/PlaylistSummaryCard";
+import TrackList from "../components/TrackList";
+import Track from "../components/Track";
 
 export default function Profile(props : {
     session : {
@@ -21,8 +23,16 @@ export default function Profile(props : {
     const [loadingPublished, setLoadingPublished] = useState(false)
     const [viewShared, setViewShared] = useState(true)
     const [selected, setSelected] = useState<boolean[]>([])
+    const [selectedPlaylistObj, setSelectedPlaylistObj] = useState<any>(null)
+    const [selectedExpanded, setSelectedExpanded] = useState<boolean[]>([])
+    const [selectedNotesArray, setSelectedNotesArray] = useState<string[]>([])
 
-
+    // function getSelectedItems(){
+    //     const index = findSelected()
+    //     const playlistObj = JSON.parse(posts[index].body)
+    //     console.log(playlistObj)
+    //     return playlistObj.tracks.items
+    // }
 
     function selectByIndex(val: boolean, i: number) {
         const selectedArray = new Array(posts.length).fill(false);
@@ -55,10 +65,40 @@ export default function Profile(props : {
         }).catch(e => console.log(e))
     }
 
+    function findSelected(){
+        for (let i = 0; i < selected.length; i++){
+            if (selected[i]){
+                return i
+            }
+        }
+        return -1
+    }
+
+    function countNotes(){
+        let noteCounter = 0
+        for (let i = 0; i < selectedNotesArray.length; i++){
+            if (selectedNotesArray[i]){
+                noteCounter++
+            }
+        }
+        return noteCounter
+    }
+
     useEffect(()=> {
         onRequest()
-        
     }, []);
+
+    useEffect(() => {
+        const index = findSelected()
+        if (index > -1){
+            const playlistObj = JSON.parse(posts[index].body)
+            setSelectedPlaylistObj(playlistObj)
+            const newExpanded = new Array(playlistObj.tracks.items.length).map(()=>false);
+            setSelectedExpanded(newExpanded)
+            const existingNotes = posts[index].notes
+            setSelectedNotesArray(existingNotes)
+        }
+    }, [selected])
 
     return (
         <>
@@ -89,12 +129,12 @@ export default function Profile(props : {
             <div style={{display: "flex"}}>
                 <div 
                     onClick={()=>{setViewPublished(true)}}
-                    style={{width: "50%", cursor: "pointer", color: viewPublished ? "black" : "lightgrey"}}>
+                    style={{width: "20%", cursor: "pointer", color: viewPublished ? "black" : "lightgrey"}}>
                     <b>Published</b>
                 </div>
                 <div 
                     onClick={()=>{setViewPublished(false)}}
-                    style={{width: "50%", cursor: "pointer", color: viewPublished ? "lightgrey" : "black"}}>
+                    style={{width: "20%", cursor: "pointer", color: viewPublished ? "lightgrey" : "black"}}>
                     <b>Drafts</b>
                 </div>
             </div>
@@ -129,7 +169,63 @@ export default function Profile(props : {
                                 <div className="playlist-preview-page">
                                     <br/>
                                     <br/>
-                                    Preview feature coming soon!
+                                    <h1 style={{textAlign: "center"}}>{selectedPlaylistObj ? selectedPlaylistObj.name : ""}</h1>
+                                    <br></br>
+                                    <h2>Overview</h2>
+
+                                    <br></br>
+                                    <div>
+                                    <div> 
+                                        This playlist has notes on  <b>{countNotes()}/{selectedPlaylistObj ? selectedPlaylistObj.tracks.items.length : <></>} </b> songs!
+                                    </div>
+                                    <br></br>
+                                    
+                                    <div className="wraplink">Link to <b>Spotify</b> playlist: 
+                                        <br></br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp; <a href={selectedPlaylistObj ? selectedPlaylistObj.external_urls.spotify : ""}>{selectedPlaylistObj ? selectedPlaylistObj.external_urls.spotify : ""}</a></div>
+                                    <br></br>
+                                    <div className="wraplink">Link to <b>liner notes</b> page: 
+                                        <br></br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp; <a href={"liner-notes.vercel.app/p/" + posts[findSelected()].name}>liner-notes.vercel.app/p/{posts[findSelected()].name}</a> </div>
+                                    <br></br>
+                                    <div> 
+                                        It is <b>viewable</b> by: <b>Everyone </b>
+                                    </div>
+                                    <br></br>
+                                    <div> 
+                                        It is <b>editable</b> by: <b>Only you </b>
+                                    </div>
+
+                                    <br></br>
+
+                                    <div style={{fontSize: "small", color: "rgba(0,0,0,0.5)"}}>(You can edit the above settings by clicking the [edit] button on the left.)</div>
+
+                                    </div>
+
+                                    <br></br>
+
+                                    <hr style={{borderTop: "dashed 1px", borderBottom : "0px"}}/>
+
+                                    <h2>Tracklist + notes</h2>
+
+                                    
+                                    {selectedPlaylistObj ? selectedPlaylistObj.tracks.items.map((item: any, i: number) => (
+                                         <>
+                                            <p>{i+1}. <b>{item.track.name}</b> -  {item['track']['artists'][0]['name']} </p>
+                                            <p className="readable-content"
+                                                style={{color: "rgba(0,0,0,0.5)"}}>
+                                                    {selectedNotesArray[i]}
+                                            </p>
+                                            <hr style={{borderTop: "dashed 1px", borderBottom : "0px"}}/>
+
+                                         </>
+                                     )) 
+                                     : 
+                                     <></>}
+                                
+
+                                    
+
                                 </div>
                                 </>
                                 
@@ -143,10 +239,17 @@ export default function Profile(props : {
                             
                         :
                         <>
+                        <div>
                         <br></br>
-                        <br/>
-                        <br/>
-                        <div style={{color: "grey"}}>Loading your playlists...</div>
+                        <br></br>
+                            <div style={{color: "grey"}}>Loading your playlists...</div>
+
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        </div>
+                        
+                        
                         </>
                         }
 
