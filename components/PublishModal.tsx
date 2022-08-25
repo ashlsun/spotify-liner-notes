@@ -46,7 +46,7 @@ export default function PublishModal(props: {
             <div style={{"color": "rgba(0,0,0,0.4)"}}>~~~~~~~~~~</div> 
             <div style={{"color": "rgba(0,0,0,0.4)"}}>Note that this feature is still being developed, so you might encounter some bugs. Your pages might move or be deleted.
             <br></br> <br></br>Highly recommend exporting your notes as a backup!
-            Also, this app does not currently support editing after publishing (I gotta work on it!)</div>
+            Also note that this app currently only supports editing after publishing if you have an account! </div>
           <br></br>
           <br></br>
           
