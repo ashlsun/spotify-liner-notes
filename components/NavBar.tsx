@@ -40,15 +40,15 @@ export default function NavBar(props: {
     
     <div className="navlink-section">
         <div className="navlink">
-            [<a className="invisible-link" href="/">home</a>]
+            <a className="invisible-link" href="/">home</a>
         </div>
 
         <div className="navlink">
-            [<a className="invisible-link" href="/about">about</a>]
+            <a className="invisible-link" href="/about">about</a>
         </div>
 
         <div className="navlink">
-            [<a className="invisible-link" href="/help">help</a>]
+            <a className="invisible-link" href="/help">help</a>
         </div>
 
         {props.session ? 

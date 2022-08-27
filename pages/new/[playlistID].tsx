@@ -192,14 +192,6 @@ export default function PlaylistPage(props:
             : 
                 ( playlistObject ?
                     <>
-                    <PublishModal 
-                        title={playlistObject['name']}
-                        visible={openPublishModal} 
-                        setVisible={(bool: boolean)=>setOpenPublishModal(bool)}
-                        publishFunction={(name: string) => postPlaylist(name)}
-                        error={publishError}
-                        success={publishSuccess}/>
-
                     <div id="page-header">
                         <img id="playlist-cover" src={playlistObject['images'][0]['url']}/>
                         <div id="playlist-info">
@@ -250,6 +242,20 @@ export default function PlaylistPage(props:
                                 </>
 
                             }
+
+                        {
+                            openPublishModal ? 
+                            <PublishModal 
+                                title={playlistObject['name']}
+                                visible={openPublishModal} 
+                                setVisible={(bool: boolean)=>setOpenPublishModal(bool)}
+                                publishFunction={(name: string) => postPlaylist(name)}
+                                error={publishError}
+                                success={publishSuccess}/>
+                            :
+                            <></>
+                        }
+                        
                             
 
                             
@@ -294,11 +300,7 @@ export default function PlaylistPage(props:
         
                         {playlistObject['tracks']['items'].map(
                                 (item : any, i : number) => (
-                        // .filter(
-                        //     (d: any) => d['track']['name'].toLowerCase().includes(search.toLowerCase()) || 
-                        //     d['track']['artists'][0]['name'].toLowerCase().includes(search.toLowerCase()) || 
-                        //     d['track']['album']['name'].toLowerCase().includes(search.toLowerCase())).map(
-                        //         (item : any, i : number) => (
+
                             <Track 
                                 key={item['added_at'] + item['track']['id']}
                                 addedAt={item['added_at']} 
