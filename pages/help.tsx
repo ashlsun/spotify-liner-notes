@@ -44,7 +44,12 @@ export default function Help(props : {
             <ol>
                 <li>Import a Spotify playlist.</li>
                 <div style={{padding: 30}}>
-                    <img style={{maxWidth:"300px", border: "0.5px dashed grey"}} src="importplaylist.gif"/>
+                    <img 
+                        style={{maxWidth:"300px", border: "0.5px dashed grey"}} 
+                        src="importplaylist.gif"
+                        alt="Screen recording gif starting on the homepage, where a user pastes a link into 
+                        a text field and clicks the Enter button next to it.
+                        Then, the imported playlist is displayed on the screen."/>
 
                 </div>
 
@@ -52,14 +57,26 @@ export default function Help(props : {
                 <li>Add notes to songs on the playlist.</li>
 
                 <div style={{padding: 30}}>
-                    <img style={{maxWidth:"300px", border: "0.5px dashed grey"}} src="addnote.gif"/>
+                    <img 
+                        style={{maxWidth:"300px", border: "0.5px dashed grey"}} 
+                        src="addnote.gif"
+                        alt="Screen recording gif starting on a list of tracks in
+                        a playlist. User clicks a track and it expands vertically, 
+                        revealing a create button. User clicks create and a text
+                        field appears, where user types a note and clicks the save buttom."/>
 
                 </div>
 
                 <li>Publish your "liner notes" to share with friends! </li>
 
                 <div style={{padding: 30, maxWidth:"300px"} }>
-                    <img style={{ maxWidth:"300px", border: "0.5px dashed grey"}} src="publish.gif"/>
+                    <img 
+                        style={{ maxWidth:"300px", border: "0.5px dashed grey"}} 
+                        src="publish.gif"
+                        alt="Screen recording gif where user clicks the publish button
+                        on a playlist page, where a popup modal appears. User clicks 
+                        the publish button on the modal and is redirected to a new page,
+                        which displays all the notes in a view only layout."/>
                     <p style={{color:"grey", fontSize: "small"}}>
                         The published example can be viewed at <a href="p/Friends-songs-3">this link!</a>
                     </p>
@@ -138,7 +155,7 @@ export default function Help(props : {
             <br></br>
 
             <li>If you're in the <strong>desktop</strong>  or <strong>mobile app:</strong> 
-            <div style={{paddingLeft: "2em"}}> find the three dots underneath the playlist header. Click "Share" and then "Copy link to playlist".</div></li>
+            <div style={{paddingLeft: "2em"}}> find the "More options" button (the three dots underneath the playlist header). Click "Share" and then "Copy link to playlist".</div></li>
             {/* <img src="desktop-copy-link.png" style={{position:"relative", padding: 10, width: "50%"}}/>    */}
             <br></br>
 
@@ -146,7 +163,7 @@ export default function Help(props : {
         <br></br>
         <p>Finding the URI (<a href="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">Unique Resource Identifier</a>): this should come in the format <mark>spotify:playlist:XXXXXXXX</mark>.</p>
         <ul>
-            <li>On <strong>Web Player</strong> and <strong>Desktop</strong>, click the three dots, hover over "Share" and "Copy link to playlist", and hold down the option/alt key before clicking. The text should change to "Copy Spotify URI".</li>
+            <li>On <strong>Web Player</strong> and <strong>Desktop</strong>, click the more options button (three dots), hover over "Share" and "Copy link to playlist", and hold down the option/alt key before clicking. The text should change to "Copy Spotify URI".</li>
         </ul>
         <br></br>
         <p>If you still have problems importing your playlist, make sure that your input matches one of the formats highlighted above & check that your playlist is public. Note that a playlist doesn't have to be added to your profile to be public!</p>
