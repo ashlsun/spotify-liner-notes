@@ -29,8 +29,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             if (!req.body.id) return res.status(400).send("Missing post ID")
             
             const session = await getSession({req});
-            const email = await PostModel.findById(req.body.id, "email")
-            if (!session || !email || email != session?.user?.email) {
+            const emailObject = await PostModel.findById(req.body.id, "email")
+            const email = emailObject.email
+            
+            if (!session) {
+                return res.status(403).send("Not logged in")
+            }
+            else if (!email) {
+                return res.status(403).send("Playlist does not have an owner")
+
+            } else if (email != session?.user?.email) {
                 return res.status(403).send("Not the owner of the playlist")
             } 
 
