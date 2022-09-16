@@ -28,10 +28,14 @@ export default function NavBar(props: {
 
     return (
     <>
-    <div className="navbar" style={{verticalAlign: "sub"}}>
-        <div style={{fontSize: "large"}}>
+    <div className="navbar" style={{verticalAlign: "sub", lineHeight: "21px", paddingBottom: "8px"}}>
+        <div style={{fontSize: "18px"}}>
             <strong className="narrow">ln</strong>
-            <strong className="wide">liner notes</strong>
+            <strong className="wide">
+            <a style={{textDecoration: "none"}} href="/">
+                liner notes
+            </a>
+            </strong>
         </div>
         <div style={{color: "rgba(0,0,0,0.5",
                      fontSize: "large"}}>
