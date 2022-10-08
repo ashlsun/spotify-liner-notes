@@ -186,7 +186,7 @@ export default function Profile(props : {
                                     <br></br>
                                     <div className="wraplink">Link to <b>liner notes</b> page: 
                                         <br></br>
-                                        &nbsp;&nbsp;&nbsp;&nbsp; <a href={"liner-notes.vercel.app/p/" + posts[findSelected()].name}>liner-notes.vercel.app/p/{posts[findSelected()].name}</a> </div>
+                                        &nbsp;&nbsp;&nbsp;&nbsp; <a href={"p/" + posts[findSelected()].name}>liner-notes.vercel.app/p/{posts[findSelected()].name}</a> </div>
                                     <br></br>
                                     <div> 
                                         It is <b>viewable</b> by: <b>Everyone </b>
