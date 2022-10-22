@@ -182,12 +182,14 @@ export default function Profile(props : {
                                     
                                     <div className="wraplink">Link to <b>Spotify</b> playlist: 
                                         <br></br>
-                                        &nbsp;&nbsp;&nbsp;&nbsp; <a href={selectedPlaylistObj ? selectedPlaylistObj.external_urls.spotify : ""}>{selectedPlaylistObj ? selectedPlaylistObj.external_urls.spotify : ""}</a></div>
+                                        <a href={selectedPlaylistObj ? selectedPlaylistObj.external_urls.spotify : ""}>{selectedPlaylistObj ? selectedPlaylistObj.external_urls.spotify : ""}</a></div>
                                     <br></br>
                                     <div className="wraplink">Link to <b>liner notes</b> page: 
                                         <br></br>
-                                        &nbsp;&nbsp;&nbsp;&nbsp; <a href={"p/" + posts[findSelected()].name}>liner-notes.vercel.app/p/{posts[findSelected()].name}</a> </div>
+                                        <a href={"p/" + posts[findSelected()].name}>liner-notes.vercel.app/p/{posts[findSelected()].name}</a> </div>
                                     <br></br>
+                                
+                                    <h3>Sharing</h3>
                                     <div> 
                                         It is <b>viewable</b> by: <b>Everyone </b>
                                     </div>
@@ -195,7 +197,10 @@ export default function Profile(props : {
                                     <div> 
                                         It is <b>editable</b> by: <b>Only you </b>
                                     </div>
-
+                                    <br></br>
+                                    <div>
+                                        You have shared it with these users: <b>None</b>
+                                    </div>
                                     <br></br>
 
                                     <div style={{fontSize: "small", color: "rgba(0,0,0,0.5)"}}>(You can edit the above settings by clicking the [edit] button on the left.)</div>
