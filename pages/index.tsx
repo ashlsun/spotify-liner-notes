@@ -66,7 +66,9 @@ export default function Index(props : {
             <button onClick={onAdd}>Add</button> */}
 
                 <div className="center">
-                    <p > Please enter the URL/URI to your Spotify playlist! </p>
+                    
+                <h1 style={{fontSize: "4vw"}}>Add notes to your playlists!</h1>
+                <br></br>
                     <div className="center" 
                         style={{display: "flex", transform: "translate(-50%, 100%)"}}> 
                         <input
@@ -74,10 +76,14 @@ export default function Index(props : {
                             style={{width:300}} 
                             value={playlistId} 
                             onChange={e => setPlaylistId(e.target.value)}
+                            placeholder="Paste in your playlist URL"
                         />
-                        <button className="enter-button" onClick={() => navigate(playlistId)} >Enter!</button> 
+                        <button className="enter-button" onClick={() => navigate(playlistId)} >Import!</button> 
                         {/* want to navigate to corresponding  */}
+
+                        
                     </div>
+
                 </div>
          
             
