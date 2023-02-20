@@ -83,7 +83,7 @@ export default function Index(props : {
 
                 <div className="center">
                     
-                <h1 style={{fontSize: "4vw"}}>Add notes to your playlists!</h1>
+                <h1 className="home-heading">Add notes to your playlists!</h1>
                 <br></br>
                 <br></br>
                     <div className="center" 
@@ -100,7 +100,7 @@ export default function Index(props : {
                         
                 
                     </div>
-                    <p className="bottomcenter" style={{fontSize: "1vw"}}>or, look at <a href={chooseRandomExample()}>liner notes made by others</a></p>
+                    <p className="bottomcenter">or, look at <a href={chooseRandomExample()}>liner notes made by others</a></p>
                 </div>
          
             

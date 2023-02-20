@@ -39,6 +39,10 @@ h1 {
     line-height: 115%;
 }
 
+.home-heading {
+    font-size: min(4vw, 50px);
+}
+
 h2 {
     margin: 0;
     font-family: 'Zen Maru Gothic';
@@ -55,6 +59,14 @@ h3 {
 
 .enter-button{
     height: 35px;
+}
+
+.bottomcenter {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, 500%);
+    font-size: min(1vw, 13px);
 }
 
 @media screen and (min-width: 600px) {
@@ -327,6 +339,7 @@ textarea:focus{
     padding-right: 10px;
 }
 
+
 @media screen and (max-width: 600px) {
     .wide {
         display: none;
@@ -364,7 +377,7 @@ textarea:focus{
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, 50%)
+        transform: translate(-50%, -50%)
     }
 
     .importInput{
@@ -378,6 +391,12 @@ textarea:focus{
     }
 }
 
+
+@media screen and (max-width: 900px) {
+    .bottomcenter {
+        display: none;
+    }
+}
 .underline{
     color: var(--main-color-lite-2);
     text-decoration: underline;
