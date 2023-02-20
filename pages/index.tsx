@@ -17,6 +17,14 @@ export default function Index(props : {
     const [playlistId, setPlaylistId] = useState("")
     const [validInput, setValidInput] = useState(true)
     const [newPostBody, setNewPostBody] = useState("");
+    const examples = [
+        "p/friends-songs-example",
+        "p/Friends-songs-3",
+        "p/friends-songs-example",
+        "p/rh-gets-local",
+        "p/OA-leader-sad-hour",
+        "p/dont-you-feel-like-a-fraud-sometimes"
+    ]
 
     function navigate(input: string){
         let id = "error"
@@ -30,6 +38,7 @@ export default function Index(props : {
 
     }
 
+    
     function onAdd(){
         axios.post("/api/post", {body: newPostBody})
             .then(() => {
@@ -54,6 +63,13 @@ export default function Index(props : {
         return uri.split(":")[2]
     }
     
+    function chooseRandomExample() {
+        const randInt = Math.floor(Math.random() * 5);
+        // window.location.href= examples[randInt]
+        return examples[randInt]
+
+    }
+
     return (
         <>
         
@@ -69,6 +85,7 @@ export default function Index(props : {
                     
                 <h1 style={{fontSize: "4vw"}}>Add notes to your playlists!</h1>
                 <br></br>
+                <br></br>
                     <div className="center" 
                         style={{display: "flex", transform: "translate(-50%, 100%)"}}> 
                         <input
@@ -80,10 +97,10 @@ export default function Index(props : {
                         />
                         <button className="enter-button" onClick={() => navigate(playlistId)} >Import!</button> 
                         {/* want to navigate to corresponding  */}
-
                         
+                
                     </div>
-
+                    <p className="bottomcenter" style={{fontSize: "1vw"}}>or, look at <a href={chooseRandomExample()}>liner notes made by others</a></p>
                 </div>
          
             
