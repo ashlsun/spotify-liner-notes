@@ -83,8 +83,25 @@ export default function Help(props : {
                 </div>
             </ol>
 
-            <p>That's basically it! More features will come when I figure out how to fully integrate user accounts!
+            <p>
+                That's all the basics!      
             </p>
+            <p>
+                There are a few more features that come with user accounts
+                , like a view of all the pages you've made, setting privacy permissions,
+                 editing, and more! You can access 
+                your personal page by clicking the circle on the top right corner of the screen.
+                </p>
+            <p>
+                Here's how that looks like:
+            </p>
+
+
+            <img 
+                style={{ maxWidth:"500px", border: "0.5px dashed grey"}} 
+                src="profilepage.gif"
+                alt="Screen recording gif demonstrating the profile page,
+                viewing past playlist pages. "/>
 
         </section>
         
